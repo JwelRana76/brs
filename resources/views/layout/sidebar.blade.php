@@ -32,16 +32,67 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brs"
+            aria-expanded="true" aria-controls="brs">
             <i class="fas fa-fw fa-users"></i>
-            <span>Patient</span>
+            <span>বিআরএস</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="brs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> Patient
-                    List</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> Add Patient</a>
+                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন বিআরএস</a>
+                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> বিআরএস তালিকা</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sa"
+            aria-expanded="true" aria-controls="sa">
+            <i class="fas fa-fw fa-users"></i>
+            <span>এসএ</span>
+        </a>
+        <div id="sa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন এসএ</a>
+                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> এসএ তালিকা</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cs"
+            aria-expanded="true" aria-controls="cs">
+            <i class="fas fa-fw fa-users"></i>
+            <span>সিএস</span>
+        </a>
+        <div id="cs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন সিএস</a>
+                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> সিএস তালিকা</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dolil"
+            aria-expanded="true" aria-controls="dolil">
+            <i class="fas fa-fw fa-users"></i>
+            <span>দলিল</span>
+        </a>
+        <div id="dolil" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন দলিল</a>
+                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> দলিল তালিকা</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dag"
+            aria-expanded="true" aria-controls="dag">
+            <i class="fas fa-fw fa-users"></i>
+            <span>দাগ নং</span>
+        </a>
+        <div id="dag" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন দাগ নং</a>
+                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> দাগ নং তালিকা</a>
             </div>
         </div>
     </li>
@@ -55,6 +106,9 @@
         <div id="collapsePages" class="collapse {{ Request::is('setting*') ? 'show' : '' }}"
             aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('setting/division') ? 'active' : '' }}"
+                    href="{{ route('division.index') }}">
+                    <i class="fas fa-fw fa-arrow-right mr-2"></i>বিভাগ</a>
                 <a class="collapse-item {{ Request::is('setting/district') ? 'active' : '' }}"
                     href="{{ route('district.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>জেলা</a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SiteSettingController;
@@ -47,12 +48,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', [SiteSettingController::class, 'index'])->name('index');
         Route::post('/update/{id}', [SiteSettingController::class, 'update'])->name('update');
     });
+    Route::group(['prefix' => 'setting/division', 'as' => 'division.'], function () {
+        Route::get('/', [DivisionController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [DivisionController::class, 'edit'])->name('edit');
+        Route::post('/store', [DivisionController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [DivisionController::class, 'delete'])->name('delete');
+    });
     Route::group(['prefix' => 'setting/district', 'as' => 'district.'], function () {
         Route::get('/', [DistrictController::class, 'index'])->name('index');
         Route::get('/edit/{id}', [DistrictController::class, 'edit'])->name('edit');
         Route::post('/store', [DistrictController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [DistrictController::class, 'delete'])->name('delete');
-        Route::post('/update/{id}', [DistrictController::class, 'update'])->name('update');
     });
 });
 
