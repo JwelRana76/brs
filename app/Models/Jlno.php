@@ -18,8 +18,8 @@ class Jlno extends Model
         ['name' => 'অপশন', 'data' => 'action'],
     ];
 
-    public function upazila()
+    public function mouja()
     {
-        return $this->belongsTo(Upazila::class);
+        return $this->belongsTo(Mouja::class);
     }
 }

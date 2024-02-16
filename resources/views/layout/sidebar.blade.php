@@ -118,11 +118,11 @@
                 <a class="collapse-item {{ Request::is('setting/mouja') ? 'active' : '' }}"
                     href="{{ route('mouja.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>মৌজা</a>
-                <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
-                    href="{{ route('role.index') }}">
+                <a class="collapse-item {{ Request::is('setting/jlno') ? 'active' : '' }}"
+                    href="{{ route('jlno.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>জেএলনং</a>
                 <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
-                    href="{{ route('role.index') }}">
+                    href="{{ route('plottype.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>জমির শ্রেনী</a>
                 <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
                     href="{{ route('role.index') }}">

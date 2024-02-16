@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\JlnoController;
 use App\Http\Controllers\MoujaController;
+use App\Http\Controllers\PlotTypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SiteSettingController;
@@ -73,6 +75,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [MoujaController::class, 'edit'])->name('edit');
         Route::post('/store', [MoujaController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [MoujaController::class, 'delete'])->name('delete');
+    });
+    Route::group(['prefix' => 'setting/jlno', 'as' => 'jlno.'], function () {
+        Route::get('/', [JlnoController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [JlnoController::class, 'edit'])->name('edit');
+        Route::post('/store', [JlnoController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [JlnoController::class, 'delete'])->name('delete');
+    });
+    Route::group(['prefix' => 'setting/plottype', 'as' => 'plottype.'], function () {
+        Route::get('/', [PlotTypeController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [PlotTypeController::class, 'edit'])->name('edit');
+        Route::post('/store', [PlotTypeController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [PlotTypeController::class, 'delete'])->name('delete');
     });
 });
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('plot_types', function (Blueprint $table) {
             $table->id();
+            $table->boolean('type')->comment('0=agriculture/1=Un-agriculture');
             $table->string('name');
             $table->string('code')->nullable();
             $table->timestamps();
