@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\MoujaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SiteSettingController;
@@ -66,6 +67,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [UpazilaController::class, 'edit'])->name('edit');
         Route::post('/store', [UpazilaController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [UpazilaController::class, 'delete'])->name('delete');
+    });
+    Route::group(['prefix' => 'setting/mouja', 'as' => 'mouja.'], function () {
+        Route::get('/', [MoujaController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [MoujaController::class, 'edit'])->name('edit');
+        Route::post('/store', [MoujaController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [MoujaController::class, 'delete'])->name('delete');
     });
 });
 

@@ -49,7 +49,7 @@ class UpazilaController extends Controller
     }
     function delete($id)
     {
-        District::findOrFail($id)->delete();
+        Upazila::findOrFail($id)->delete();
         return redirect()->route('upazila.index')->with('success', 'Upazila Deleted Successfully');
     }
 }

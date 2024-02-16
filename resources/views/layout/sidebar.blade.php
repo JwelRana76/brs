@@ -112,11 +112,11 @@
                 <a class="collapse-item {{ Request::is('setting/district') ? 'active' : '' }}"
                     href="{{ route('district.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>জেলা</a>
-                <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
+                <a class="collapse-item {{ Request::is('setting/upazila') ? 'active' : '' }}"
                     href="{{ route('upazila.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>থানা</a>
-                <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
-                    href="{{ route('role.index') }}">
+                <a class="collapse-item {{ Request::is('setting/mouja') ? 'active' : '' }}"
+                    href="{{ route('mouja.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>মৌজা</a>
                 <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
                     href="{{ route('role.index') }}">
