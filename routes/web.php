@@ -5,6 +5,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\UpazilaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [DistrictController::class, 'edit'])->name('edit');
         Route::post('/store', [DistrictController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [DistrictController::class, 'delete'])->name('delete');
+    });
+    Route::group(['prefix' => 'setting/upazila', 'as' => 'upazila.'], function () {
+        Route::get('/', [UpazilaController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [UpazilaController::class, 'edit'])->name('edit');
+        Route::post('/store', [UpazilaController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [UpazilaController::class, 'delete'])->name('delete');
     });
 });
 

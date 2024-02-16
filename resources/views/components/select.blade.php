@@ -1,7 +1,7 @@
 <div class="form-group mb-2">
     @if (!$attributes['hide-label'])
         <label class="form-label" for="{{ $id }}">
-            {{ ucwords(str_replace('_', ' ', $id)) }}
+            {{ ucwords(str_replace('_', ' ', $label == null ? $id:$label)) }}
             <strong>
                 {{$attributes['required'] ? '*' : ''}}
             </strong>
@@ -12,7 +12,7 @@
         <div class="input-group">
     @endif
     
-    <select name="{{ $id }}" id="{{ $id }}" class="form-control selectpicker" data-live-search="true" title="Select {{ ucwords(str_replace('_', ' ', $id)) }}" {{ $attributes }}>
+    <select name="{{ $id }}" id="{{ $id }}" class="form-control selectpicker" data-live-search="true" title="{{ ucwords(str_replace('_', ' ', $label == null ? $id:$label)) }} বাছাই করুন" {{ $attributes }}>
         @foreach ($options as $option)
             <option
                 @php

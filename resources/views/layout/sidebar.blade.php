@@ -113,7 +113,7 @@
                     href="{{ route('district.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>জেলা</a>
                 <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
-                    href="{{ route('role.index') }}">
+                    href="{{ route('upazila.index') }}">
                     <i class="fas fa-fw fa-arrow-right mr-2"></i>থানা</a>
                 <a class="collapse-item {{ Request::is('setting/role') ? 'active' : '' }}"
                     href="{{ route('role.index') }}">

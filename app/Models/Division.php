@@ -12,8 +12,8 @@ class Division extends Model
     protected $guarded = ['id'];
 
     public static $columns = [
-        ['name' => 'name', 'data' => 'name'],
-        ['name' => 'code', 'data' => 'code'],
-        ['name' => 'action', 'data' => 'action'],
+        ['name' => 'নাম', 'data' => 'name'],
+        ['name' => 'কোড', 'data' => 'code'],
+        ['name' => 'অপশন', 'data' => 'action'],
     ];
 }

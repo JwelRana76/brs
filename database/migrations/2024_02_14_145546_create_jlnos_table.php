@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('jlnos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('mouja_id')->constrained('moujas')->onDelete('cascade');
+            $table->string('name');
+            $table->string('code');
             $table->timestamps();
         });
     }

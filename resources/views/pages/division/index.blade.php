@@ -1,12 +1,12 @@
-<x-admin title="Division">
-    <x-page-header head="Division" />
+<x-admin title="বিভাগ">
+    <x-page-header head="বিভাগ" />
     <div class="row">
         <div class="col-md-4">
             <div class="card p-3">
                 <x-form method="post" action="{{ route('division.store') }}">
                     <x-input id="id" type="hidden" value="{{ $division->id ?? null }}" />
-                    <x-input id="name" value="{{ $division->name ?? old('name') }}" required />
-                    <x-input id="code" value="{{ $division->code ?? null }}" required />
+                    <x-input id="name" label="নাম" value="{{ $division->name ?? old('name') }}" required />
+                    <x-input id="code" label="কোড" value="{{ $division->code ?? null }}" required />
                     <x-button value="Save" />
                 </x-form>
             </div>
