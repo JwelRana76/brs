@@ -10,8 +10,9 @@
         id="{{ $id }}" 
         class="form-control" 
         type="{{ $type }}"
-        name="{{$id }}" 
+        name="{{ $name == '' ? $id:$name }}" 
         {{ $attributes }}
+        placeholder="{{ $label }} লিখুন"
     />
     @error($id)
         <strong class="text-danger">{{ $message }}</strong>

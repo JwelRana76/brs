@@ -1,8 +1,4 @@
-<div class="form-group mb-3 {{ $class }}">
-    <label for="{{ $id }}">{{ ucwords(str_replace('_', ' ', $id)) }}
-        <strong> {{$attributes['required'] ? '*' : ''}}
-        </strong>
-    </label>
+<div class="form-group mb-1 {{ $class }}">
     <textarea
         id="{{ $id }}" 
         class="form-control" 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrsController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\JlnoController;
@@ -87,6 +88,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [PlotTypeController::class, 'edit'])->name('edit');
         Route::post('/store', [PlotTypeController::class, 'store'])->name('store');
         Route::get('/delete/{id}', [PlotTypeController::class, 'delete'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'brs', 'as' => 'brs.'], function () {
+        Route::get('/', [BrsController::class, 'index'])->name('index');
+        Route::get('/create', [BrsController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [BrsController::class, 'edit'])->name('edit');
+        Route::post('/store', [BrsController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [BrsController::class, 'delete'])->name('delete');
+
+        Route::get('/find_district/{id}', [BrsController::class, 'find_district']);
     });
 });
 

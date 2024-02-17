@@ -39,8 +39,8 @@
         </a>
         <div id="brs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন বিআরএস</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> বিআরএস তালিকা</a>
+                <a class="collapse-item" href="{{ route('brs.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন বিআরএস</a>
+                <a class="collapse-item" href="{{ route('brs.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> বিআরএস তালিকা</a>
             </div>
         </div>
     </li>
