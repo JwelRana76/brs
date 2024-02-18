@@ -1,33 +1,33 @@
-<x-admin title="নতুন বিআরএস">
-    <x-page-header head="নতুন বিআরএস" />
-    <x-form method="post" action="{{ route('brs.store') }}">
+<x-admin title="বিআরএস সংস্করণ">
+    <x-page-header head="বিআরএস সংস্করণ" />
+    <x-form method="post" action="{{ route('brs.update',$brs->id) }}">
       <div class="row">
         <div class="col-md-12">
           <div class="card p-3">
             <div class="row">
               <div class="col-md-4 m-auto">
-                <x-input3 id="khotian_no" label="খতিয়ান নং" required />
+                <x-input3 id="khotian_no" value="{{ $brs->khotian_no }}" label="খতিয়ান নং" required />
               </div>
               <div class="col-md-12">
                 <hr>
               </div>
               <div class="col-md-2">
-                <x-select id="division" label="বিভাগ" required :options="$divisions" />
+                <x-select id="division" label="বিভাগ" selectedId="{{ $brs->jlno->mouja->upazila->district->division_id }}" required :options="$divisions" />
               </div>
               <div class="col-md-2">
-                <x-select id="district" label="জেলা" required :options="$districts" />
+                <x-select id="district" label="জেলা" selectedId="{{ $brs->jlno->mouja->upazila->district_id }}" required :options="$districts" />
               </div>
               <div class="col-md-2">
-                <x-select id="upazila" label="থানা" required :options="$upazilas" />
+                <x-select id="upazila" label="থানা" selectedId="{{ $brs->jlno->mouja->upazila_id }}" required :options="$upazilas" />
               </div>
               <div class="col-md-2">
-                <x-select id="mouja" label="মৌজা" required :options="$moujas" />
+                <x-select id="mouja" label="মৌজা" selectedId="{{ $brs->jlno->mouja_id }}" required :options="$moujas" />
               </div>
               <div class="col-md-2">
-                <x-select id="jlno" label="জেএল নং" required :options="$jlnos" />
+                <x-select id="jlno" label="জেএল নং" selectedId="{{ $brs->jlno_id }}" required :options="$jlnos" />
               </div>
               <div class="col-md-2">
-                <x-input id="resa_no" label="রেঃসাঃনং" required />
+                <x-input id="resa_no" label="রেঃসাঃনং" value="{{ $brs->resa_no }}" required />
               </div>
               <div class="col-md-12">
                 <hr>
@@ -64,44 +64,47 @@
                         </tr>
                     </thead>
                     <tbody id="test_table">
+                      @foreach ($brs->brs_details as $details)
                       <tr>
+                        
                         <td>
-                          <x-textarea2 id="name" required name="name[]" />
+                          <x-textarea2 id="name" value="{{ $details->name }}" required name="name[]" />
                         </td>
                         <td>
-                          <x-input2 id="part" name="part[]" />
+                          <x-input2 id="part" value="{{ $details->part }}" name="part[]" />
                         </td>
                         <td>
-                          <x-input2 id="revenue" name="revenue[]" />
+                          <x-input2 id="revenue" value="{{ $details->revenue }}" name="revenue[]" />
                         </td>
                         <td>
-                          <x-input2 id="stain" name="stain[]" />
+                          <x-input2 id="stain" value="{{ $details->stain }}" name="stain[]" />
                         </td>
                         <td>
-                          <x-input2 id="plottype1" name="plottype1[]" />
+                          <x-input2 id="plottype1" name="plottype1[]" value="{{ $details->plottype1 }}" />
                         </td>
                         <td>
-                          <x-input2 id="plottype2" name="plottype2[]" />
+                          <x-input2 id="plottype2" name="plottype2[]" value="{{ $details->plottype2 }}" />
                         </td>
                         <td>
-                          <x-input2 id="amount1" name="amount1[]" />
+                          <x-input2 id="amount1" value="{{ $details->amount1 }}" name="amount1[]" />
                         </td>
                         <td>
-                          <x-input2 id="amount2" name="amount2[]" />
+                          <x-input2 id="amount2" value="{{ $details->amount2 }}" name="amount2[]" />
                         </td>
                         <td>
-                          <x-input2 id="khotian_amount" name="khotian_amount[]" />
+                          <x-input2 id="khotian_amount" value="{{ $details->khotian_amount }}" name="khotian_amount[]" />
                         </td>
                         <td>
-                          <x-input2 id="plot_amount1" name="plot_amount1[]"  />
+                          <x-input2 id="plot_amount1" value="{{ $details->plot_amount1 }}" name="plot_amount1[]"  />
                         </td>
                         <td>
-                          <x-input2 id="plot_amount2" name="plot_amount2[]" />
+                          <x-input2 id="plot_amount2" value="{{ $details->plot_amount2 }}" name="plot_amount2[]" />
                         </td>
                         <td>
-                          <x-textarea2 id="comment" name="comment[]" />
+                          <x-textarea2 id="comment" value="{{ $details->comment }}" name="comment[]" />
                         </td>
                       </tr>
+                      @endforeach
                     </tbody>
                 </table>
               </div>
@@ -119,9 +122,7 @@
         const upazila = @json($upazilas);
         const mouja = @json($moujas);
         const jlno = @json($jlnos);
-        var krisis = @json($krisis);
-        var okrisis = @json($okrisis);
-
+        console.log(district);
         $('#brs_added_button').on('click', function () {
           $('#test_table').append(`
             <tr>

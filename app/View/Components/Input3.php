@@ -5,9 +5,8 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Laravel\Sail\Console\PublishCommand;
 
-class Textarea extends Component
+class Input3 extends Component
 {
     /**
      * Create a new component instance.
@@ -15,9 +14,9 @@ class Textarea extends Component
     public function __construct(
         public $id = '',
         public $class = '',
-        public $row = '',
+        public $type = '',
+        public $label = '',
         public $name = '',
-        public $value = '',
     ) {
         //
     }
@@ -27,6 +26,6 @@ class Textarea extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.textarea');
+        return view('components.input3');
     }
 }

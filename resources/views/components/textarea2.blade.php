@@ -7,6 +7,7 @@
         name="{{ $name == '' ? $id:$name }}" 
         {{ $attributes }}
     >
+    {{ $value }}
     </textarea>
     @error($id)
         <strong class="text-danger">{{ $message }}</strong>

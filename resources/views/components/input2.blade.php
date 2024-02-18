@@ -7,7 +7,7 @@
         name="{{ $name == '' ? $id:$name }}" 
         {{ $attributes }}
     />
-    @error($id)
+    @error($name == '' ? $id:$name)
         <strong class="text-danger">{{ $message }}</strong>
     @enderror
   </div>

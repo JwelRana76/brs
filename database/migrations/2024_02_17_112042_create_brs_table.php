@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('brs', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->unique();
+            $table->string('resa_no');
+            $table->foreignId('jlno_id')->constrained('jlnos')->onDelete('cascade');
+            $table->string('khotian_no');
             $table->timestamps();
         });
     }

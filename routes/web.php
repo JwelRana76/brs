@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/create', [BrsController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [BrsController::class, 'edit'])->name('edit');
         Route::post('/store', [BrsController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [BrsController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [BrsController::class, 'delete'])->name('delete');
 
         Route::get('/find_district/{id}', [BrsController::class, 'find_district']);

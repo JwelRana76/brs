@@ -1,5 +1,5 @@
 <div class="form-group mb-2">
-    <select name="{{ $id }}" id="{{ $id }}" class="form-control" data-live-search="true" title="" {{ $attributes }}>
+    <select name="{{ $name == '' ? $id:$name }}" id="{{ $id }}" class="form-control" data-live-search="true" title="" {{ $attributes }}>
         <option ></option>
         @foreach ($options as $option)
             <option
@@ -17,7 +17,7 @@
     </select>
 </div>
 
-@error($id)
+@error($name == '' ? $id:$name)
     <strong class="text-danger">{{ $message }}</strong>
 @enderror
 </div>

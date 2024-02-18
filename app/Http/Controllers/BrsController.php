@@ -9,13 +9,14 @@ use App\Models\Jlno;
 use App\Models\Mouja;
 use App\Models\PlotType;
 use App\Models\Upazila;
+use App\Service\BrsService;
 use Illuminate\Http\Request;
 
 class BrsController extends Controller
 {
     public function __construct()
     {
-        $this->baseService = new Brs();
+        $this->baseService = new BrsService();
     }
     public function index()
     {
@@ -47,26 +48,52 @@ class BrsController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->id == null) {
-            $request->validate([
+        $request->validate(
+            [
+                'khotian_no' => 'required',
+                'division' => 'required',
+                'district' => 'required',
+                'upazila' => 'required',
+                'mouja' => 'required',
+                'jlno' => 'required',
+                'resa_no' => 'required',
                 'name' => 'required',
-                'code' => 'required|unique:jlnos'
-            ]);
-        }
+            ]
+        );
         $data = $request->all();
         $message = $this->baseService->create($data);
-        return redirect()->route('jlno.index')->with($message);
+        return redirect()->route('brs.index')->with($message);
     }
     function edit($id)
     {
-        $jlno = Jlno::findOrFail($id);
-        $item = $this->baseService->Index();
+        $brs = Brs::findOrFail($id);
+
+        $divisions = Division::all();
+        $districts = District::all();
+        $upazilas = Upazila::all();
         $moujas = Mouja::all();
-        $columns = Jlno::$columns;
-        if (request()->ajax()) {
-            return $item;
-        }
-        return view('pages.jlno.index', compact('columns', 'jlno', 'moujas'));
+        $jlnos = Jlno::all();
+        $krisis = PlotType::where('type', 0)->get();
+        $okrisis = PlotType::where('type', 1)->get();
+        return view('pages.brs.edit', compact('brs', 'divisions', 'districts', 'upazilas', 'moujas', 'jlnos', 'krisis', 'okrisis'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'khotian_no' => 'required',
+                'division' => 'required',
+                'district' => 'required',
+                'upazila' => 'required',
+                'mouja' => 'required',
+                'jlno' => 'required',
+                'resa_no' => 'required',
+                'name' => 'required',
+            ]
+        );
+        $data = $request->all();
+        $message = $this->baseService->update($data, $id);
+        return redirect()->route('brs.index')->with($message);
     }
     function delete($id)
     {

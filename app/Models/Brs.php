@@ -12,9 +12,19 @@ class Brs extends Model
     protected $guarded = ['id'];
 
     public static $columns = [
-        ['name' => 'বিভাগ', 'data' => 'division'],
-        ['name' => 'নাম', 'data' => 'name'],
-        ['name' => 'কোড', 'data' => 'code'],
+        ['name' => 'খতিয়ান নং', 'data' => 'khotian_no'],
+        ['name' => 'ইউনিক আইডি', 'data' => 'unique_id'],
+        ['name' => 'মৌজা', 'data' => 'mouja'],
+        ['name' => 'রেঃসাঃনং', 'data' => 'resa_no'],
         ['name' => 'অপশন', 'data' => 'action'],
     ];
+
+    public function jlno()
+    {
+        return $this->belongsTo(Jlno::class);
+    }
+    public function brs_details()
+    {
+        return $this->hasMany(BrsDetail::class, 'brs_id');
+    }
 }
