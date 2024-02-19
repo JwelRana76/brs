@@ -48,6 +48,7 @@ class BrsController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate(
             [
                 'khotian_no' => 'required',
@@ -94,6 +95,12 @@ class BrsController extends Controller
         $data = $request->all();
         $message = $this->baseService->update($data, $id);
         return redirect()->route('brs.index')->with($message);
+    }
+
+    public function view($id)
+    {
+        $brs = Brs::findOrFail($id);
+        return view('pages.brs.view', compact('brs'));
     }
     function delete($id)
     {

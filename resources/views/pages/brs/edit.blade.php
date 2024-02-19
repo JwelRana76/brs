@@ -66,7 +66,6 @@
                     <tbody id="test_table">
                       @foreach ($brs->brs_details as $details)
                       <tr>
-                        
                         <td>
                           <x-textarea2 id="name" value="{{ $details->name }}" required name="name[]" />
                         </td>
