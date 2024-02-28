@@ -23,9 +23,10 @@
     <link href="/css/jquery.dataTables.css" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> --}}
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SutonnyMJ&display=swap">
 
+    <link rel="stylesheet" href="/css/custom.css">
+    
 </head>
 
 <body id="page-top">

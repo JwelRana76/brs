@@ -32,28 +32,28 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brs"
+        <a class="nav-link {{ Request::is('brs*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#brs"
             aria-expanded="true" aria-controls="brs">
             <i class="fas fa-fw fa-users"></i>
             <span>বিআরএস</span>
         </a>
-        <div id="brs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="brs" class="collapse {{ Request::is('brs*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('brs.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন বিআরএস</a>
-                <a class="collapse-item" href="{{ route('brs.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> বিআরএস তালিকা</a>
+                <a class="collapse-item {{ Request::is('brs/create') ? 'active' : '' }}" href="{{ route('brs.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন বিআরএস</a>
+                <a class="collapse-item {{ Request::is('brs') ? 'active' : '' }}" href="{{ route('brs.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> বিআরএস তালিকা</a>
             </div>
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sa"
+        <a class="nav-link {{ Request::is('sa*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#sa"
             aria-expanded="true" aria-controls="sa">
             <i class="fas fa-fw fa-users"></i>
             <span>এসএ</span>
         </a>
-        <div id="sa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="sa" class="collapse {{ Request::is('sa*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন এসএ</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> এসএ তালিকা</a>
+                <a class="collapse-item {{ Request::is('sa/create') ? 'active' : '' }}" href="{{ route('sa.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন এসএ</a>
+                <a class="collapse-item {{ Request::is('sa') ? 'active' : '' }}" href="{{ route('sa.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> এসএ তালিকা</a>
             </div>
         </div>
     </li>

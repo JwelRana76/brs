@@ -1,19 +1,21 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="" />
     <title>বিআরএস প্রিন্ট</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SutonnyMJ&display=swap">
     <style>
+        body {
+            font-family: sans-serif, 'SutonnyMJ';
+        }
         * {
             line-height: 16px;
             font-size:14px !important;
-            
         }
         .btn {
             padding: 7px 10px;
@@ -30,82 +32,89 @@
             width: 100%;
         }
         .left-section{
-          display: block;
-          width: 90%;
-          float: left;
-          text-align: center;
-          font-size: 18px !important;
-          font-weight: bold !important;
+            display: block;
+            width: 90%;
+            float: left;
+            text-align: center;
+            font-size: 18px !important;
+            font-weight: bold !important;
         }
         .right-section{
-          text-align: right;
+            text-align: right;
         }
         .heading{
-          display: flex;
-          margin-bottom: 20px
+            display: flex;
+            margin-bottom: 20px
         }
         .h-part{
-          width: 16.5%;
-          font-weight: bold
+            width: 16.5%;
+            font-weight: bold
         }
         table, td, th {
-          border: 1px solid;
-          padding: 10px
+            border: 1px solid;
+            padding: 10px
         }
-
         table {
-          width: 100%;
-          border-collapse: collapse;
+            width: 100%;
+            border-collapse: collapse;
         }
+        .header_details, .header_details th, table{
+            border: none !important; 
+        }
+        .header_details th{
+            line-height: 20px;
+            padding: 5px 10px !important;
+        }
+        tbody tr td{
+            border-top: none;
+            border-bottom: none;
+            padding: 2px 10px
+        }
+        th{
+            padding: 2px 10px
+        }
+        tfoot tr:last-child td{
+          border: none !important;
+        }
+        
         @media  print {
-            * {
-                font-size:13px;
-                line-height: 24px
-                margin:10px 0;
-                padding:0;
-                box-sizing:border-box;
-            }
-            
-            div.divFooter {
-              display:block;
-              position: fixed;
-              bottom: 20px;
-              left: 30px;
-              right: 0;
+            @page  { 
+                size: landscape;
+                margin: 20px
             }
             .hidden-print {
-              display: none !important;
+                display: none !important;
             }
-            
-            @page  { margin: 0; } body { margin: 0.5cm; margin-bottom:1.6cm; }
-            
         }
         
     </style>
-  </head>
+</head>
 <body>
+  @php
+      
+  @endphp
 <div class="container" style="max-width: 1000px;margin:20px auto">
     <div class="hidden-print">
         <button onclick="window.print();" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
         <br>
     </div>
-
     <div id="receipt-data">
-      <div class="row" style="margin-bottom: 20px;display:flex">
-        <div class="left-section">খতিয়ান নং- {{ $brs->khotian_no }}</div>
-        <div class="right-section">পৃষ্ঠা নং-১</div>
-      </div>
-      <div class="row heading">
-        <div class="h-part">বিভাগঃ- {{ $brs->jlno->mouja->upazila->district->division->name }}</div>  
-        <div class="h-part">জেলাঃ- {{ $brs->jlno->mouja->upazila->district->name }}</div>  
-        <div class="h-part">থানাঃ- {{ $brs->jlno->mouja->upazila->name }}</div>  
-        <div class="h-part">মৌজাঃ- {{ $brs->jlno->mouja->name }}</div>  
-        <div class="h-part">জে,এল,নং- {{ $brs->jlno->name }}</div>  
-        <div class="h-part">রেঃ সাঃ নং- {{ $brs->resa_no }}</div>  
-      </div> 
+      
       <div class="table">
         <table>
           <thead>
+            <tr class="header_details">
+              <th> <br><br>বিভাগঃ- {{ $brs->jlno->mouja->upazila->district->division->name }}</th>
+              <th colspan="3"> <br><br>জেলাঃ- {{ $brs->jlno->mouja->upazila->district->name }}</th>
+              <th colspan="2">
+                <span style="font-size:16px !important" class="khotian">খতিয়ান নং- {{ convertToBangla($brs->khotian_no) }}</span> <br><br>
+                থানাঃ- {{ $brs->jlno->mouja->upazila->name }}</th>
+              <th colspan="2"><br><br>মৌজাঃ- {{ $brs->jlno->mouja->name }}</th>
+              <th colspan="2"><br><br>জে,এল,নং- {{ convertToBangla($brs->jlno->name) }}</th>
+              <th colspan="2" id="pageNumbers">
+                পৃষ্ঠা নং-১ <br><br>
+                রেঃ সাঃ নং- {{ convertToBangla($brs->resa_no) }}</th>
+            </tr>
             <tr>
                 <th>মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা</th>
                 <th>অংশ</th>
@@ -132,25 +141,31 @@
               <th></th>
             </tr>
           </thead>
+          @php
+              $total_part = 0;
+              $total_plot_amount1 = 0;
+              $total_plot_amount2 = 0;
+          @endphp
           <tbody>
             @foreach ($brs->brs_details as $details)
             <tr>
               @php
-                  $total_part = floatVal($details->part);
-                  $total_plot_amount1 = floatVal($details->plot_amount1);
-                  $total_plot_amount2 = floatVal($details->plot_amount2);
+                  $total_part += floatVal($details->part);
+
+                  $total_plot_amount1 += floatVal($details->plot_amount1);
+                  $total_plot_amount2 += floatVal($details->plot_amount2);
               @endphp
               <td>{!! nl2br(e($details->name)) !!}</td> {{-- this type of code written so that the value is shown when input the textarea value exjuctly same --}}
-              <td>{{ $details->part }}</td>
-              <td>{{ $details->revenue }}</td>
-              <td>{{ $details->stain }}</td>
+              <td>{{ convertToBangla($details->part) }}</td>
+              <td>{{ convertToBangla($details->revenue) }}</td>
+              <td>{{ convertToBangla($details->stain) }}</td>
               <td>{{ $details->plottype1 }}</td>
               <td>{{ $details->plottype2 }}</td>
-              <td>{{ $details->amount1 }}</td>
-              <td>{{ $details->amount2 }}</td>
-              <td>{{ $details->khotian_amount }}</td>
-              <td>{{ $details->plot_amount1 }}</td>
-              <td>{{ $details->plot_amount2 }}</td>
+              <td>{{ convertToBangla($details->amount1) }}</td>
+              <td>{{ convertToBangla($details->amount2) }}</td>
+              <td>{{ convertToBangla($details->khotian_amount) }}</td>
+              <td>{{ convertToBangla($details->plot_amount1) }}</td>
+              <td>{{ convertToBangla($details->plot_amount2) }}</td>
               <td>{!! nl2br(e($details->comment)) !!}</td>
             </tr>
             @endforeach
@@ -158,23 +173,43 @@
           <tfoot>
             <tr>
               <td>....... ধারা মতে নোট বা পরিবর্তন মায় মোকদ্দমা নং এবং সন </td>
-              <td>{{ $total_part }}</td>
+              <td>{{ convertToBangla((string)$total_part) }}</td>
               <td colspan="7" style="text-align: center"><span style="float: right">মোট জমিঃ-</span>  <br>পরিবার পরিকল্পনা গ্রহন করুন।</td>
-              <td>{{ $total_plot_amount1 }} </td>
-              <td>{{ $total_plot_amount2 }} </td>
+              <td>{{ convertToBangla((string)$total_plot_amount1) }} </td>
+              <td>{{ convertToBangla((string)$total_plot_amount2) }} </td>
               <td></td>
+            </tr>
+            <tr>
+              <td style="line-height: 16px" colspan="8">মুদ্রণঃ সেটেলমেন্ট প্রেস, ঢাকা। <span style="margin-left: 30px;">তারিখঃ </span>
+                <br>
+                বাংলাদেশ ফরম নং ৫৪৬২ (সংশোধিত)
+              </td>
+              <td colspan="4">
+                কম্পিউটার কোডঃ ৪২৮ ১৫৭৭১-১২২৩৬১৯
+              </td>
             </tr>
           </tfoot>
         </table>  
       </div> 
     </div>
 </div>
-
+{{-- <div class="divFooter" style="float:right">
+    <div class="col-md-6">
+        <h2>Md Jwel Rana</h2>
+    </div>
+</div> --}}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-    function auto_print() {
-      //  window.print()
-    }
-    setTimeout(auto_print, 1000);
+    window.matchMedia('print').addListener(function(media){
+        if(media.matches) {
+            var pageCount = 0;
+            window.onbeforeprint = function () {
+                pageCount++;
+                var pageNumberDiv = document.getElementById('pageNumbers');
+                pageNumberDiv.innerHTML = "পৃষ্ঠা নং-" + pageCount + "<br><br>রেঃ সাঃ নং- {{ $brs->resa_no }}";
+            }
+        }
+    });
 </script>
 
 </body>

@@ -2,36 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brs;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Jlno;
 use App\Models\Mouja;
-use App\Models\PlotType;
+use App\Models\Sa;
 use App\Models\Upazila;
-use App\Service\BrsService;
+use App\Service\SaService;
 use Illuminate\Http\Request;
 
-class BrsController extends Controller
+class SaController extends Controller
 {
     public function __construct()
     {
-        $this->baseService = new BrsService();
+        $this->baseService = new SaService();
     }
     public function index()
     {
         $item = $this->baseService->Index();
-        $columns = Brs::$columns;
+        $columns = Sa::$columns;
         if (request()->ajax()) {
             return $item;
         }
-        return view('pages.brs.index', compact('columns'));
-    }
-
-    public function find_district($id)
-    {
-        $district = District::where('division_id', $id)->get();
-        return $district;
+        return view('pages.sa.index', compact('columns'));
     }
 
     public function create()
@@ -41,24 +34,15 @@ class BrsController extends Controller
         $upazilas = Upazila::all();
         $moujas = Mouja::all();
         $jlnos = Jlno::all();
-        $krisis = PlotType::where('type', 0)->get();
-        $okrisis = PlotType::where('type', 1)->get();
-        return view('pages.brs.create', compact('divisions', 'districts', 'upazilas', 'moujas', 'jlnos', 'krisis', 'okrisis'));
+        return view('pages.sa.create', compact('divisions', 'districts', 'upazilas', 'moujas', 'jlnos'));
     }
 
     public function store(Request $request)
     {
-        
+
         $request->validate(
             [
                 'khotian_no' => 'required',
-                'division' => 'required',
-                'district' => 'required',
-                'upazila' => 'required',
-                'mouja' => 'required',
-                'jlno' => 'required',
-                'resa_no' => 'required',
-                'name' => 'required',
             ]
         );
         $data = $request->all();
@@ -74,9 +58,7 @@ class BrsController extends Controller
         $upazilas = Upazila::all();
         $moujas = Mouja::all();
         $jlnos = Jlno::all();
-        $krisis = PlotType::where('type', 0)->get();
-        $okrisis = PlotType::where('type', 1)->get();
-        return view('pages.brs.edit', compact('brs', 'divisions', 'districts', 'upazilas', 'moujas', 'jlnos', 'krisis', 'okrisis'));
+        return view('pages.brs.edit', compact('brs', 'divisions', 'districts', 'upazilas', 'moujas', 'jlnos'));
     }
     public function update(Request $request, $id)
     {
@@ -99,12 +81,12 @@ class BrsController extends Controller
 
     public function view($id)
     {
-        $brs = Brs::findOrFail($id);
-        return view('pages.brs.view', compact('brs'));
+        $sa = Sa::findOrFail($id);
+        return view('pages.sa.view', compact('sa'));
     }
     function delete($id)
     {
-        Brs::findOrFail($id)->delete();
-        return redirect()->route('brs.index')->with('success', 'BRS Deleted Successfully');
+        Sa::findOrFail($id)->delete();
+        return redirect()->route('sa.index')->with('success', 'এসএ সফল ভাবে মুছে ফেলা হয়েছে');
     }
 }

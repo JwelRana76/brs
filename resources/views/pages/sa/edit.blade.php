@@ -1,12 +1,12 @@
-<x-admin title="নতুন বিআরএস">
-    <x-page-header head="নতুন বিআরএস" />
-    <x-form method="post" action="{{ route('brs.store') }}">
+<x-admin title="নতুন এসএ">
+    <x-page-header head="নতুন এসএ" />
+    <x-form method="post" action="{{ route('sa.store') }}">
       <div class="row">
         <div class="col-md-12">
           <div class="card p-3">
             <div class="row">
               <div class="col-md-4 m-auto">
-                <x-input3 id="khotian_no" label="খতিয়ান নং" required />
+                <x-input3 id="khotian_no" label="এসএ খতিয়ান" required />
               </div>
               <div class="col-md-12">
                 <hr>
@@ -29,6 +29,9 @@
               <div class="col-md-2">
                 <x-input id="resa_no" label="রেঃসাঃনং" required />
               </div>
+              <div class="col-md-2">
+                <x-input id="tougi_no" label="তৌজি নং" required />
+              </div>
               <div class="col-md-12">
                 <hr>
               </div>
@@ -38,32 +41,24 @@
                 <table class="table table-bordered brs-table" style="font-size:12px">
                     <thead>
                         <tr>
-                            <th>মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা</th>
-                            <th>অংশ</th>
-                            <th>রাজস্ব</th>
-                            <th>দাগ নং</th>
-                            <th colspan="2">জমির শ্রেণী</th>
-                            <th colspan="2">দাগের মোট পরিমাণ</th>
-                            <th>দাগের মধ্যে অত্র খতিয়ানের অংশ</th>
-                            <th colspan="2">অংশ অনুযায়ী জমির পরিমাণ</th>
-                            <th>দথল বিষয়ক বা অন্যান্য বিষয়ক মন্তব্য</th>
+                            <th colspan="3">উপরিস্থ স্বত্তের</th>
+                            <th colspan="3">অত্র স্বত্তের দেয়</th>
+                            <th>মন্তব্য</th>
+                            <th colspan="2">২৪/১ ধারামতে কোন তারিখ হইতে</th>
                         </tr>
                         <tr>
-                          <th>১ *</th>
-                          <th>২</th>
-                          <th>৩</th>
-                          <th>৪</th>
-                          <th>কৃষি ৫(ক)</th>
-                          <th>অকৃষি ৫(খ)</th>
-                          <th>একর ৬(ক)</th>
-                          <th>শতাংশ ৬(খ)</th>
-                          <th>৭</th>
-                          <th>একর ৮(ক)</th>
-                          <th>শতাংশ ৮(খ)</th>
+                          <th>খতিয়ান নং বা মায় বাটা</th>
+                          <th>বিবরণ বা দখলদার (সংক্ষিপ্ত)</th>
+                          <th>পরস্পর অংশ</th>
+                          <th>খাজনা</th>
+                          <th>সেল</th>
+                          <th>শিক্ষা সেল</th>
                           <th></th>
+                          <th>খাজনা</th>
+                          <th>সেল</th>
                         </tr>
                     </thead>
-                    <tbody id="test_table">
+                    <tbody id="sa_table">
                       <tr>
                         <td>
                           <x-textarea2 id="name" required name="name[]" />
@@ -92,15 +87,6 @@
                         <td>
                           <x-input2 id="khotian_amount" name="khotian_amount[]" />
                         </td>
-                        <td>
-                          <x-input2 id="plot_amount1" name="plot_amount1[]"  />
-                        </td>
-                        <td>
-                          <x-input2 id="plot_amount2" name="plot_amount2[]" />
-                        </td>
-                        <td>
-                          <x-textarea2 id="comment" name="comment[]" />
-                        </td>
                       </tr>
                     </tbody>
                 </table>
@@ -119,9 +105,11 @@
         const upazila = @json($upazilas);
         const mouja = @json($moujas);
         const jlno = @json($jlnos);
+        var krisis = @json($krisis);
+        var okrisis = @json($okrisis);
 
         $('#brs_added_button').on('click', function () {
-          $('#test_table').append(`
+          $('#sa_table').append(`
             <tr>
               <td>
                 <x-textarea2 id="name" required name="name[]" />
@@ -150,22 +138,13 @@
               <td>
                 <x-input2 id="khotian_amount" name="khotian_amount[]" />
               </td>
-              <td>
-                <x-input2 id="plot_amount1" name="plot_amount1[]"  />
-              </td>
-              <td>
-                <x-input2 id="plot_amount2" name="plot_amount2[]" />
-              </td>
-              <td>
-                <x-textarea2 id="comment" name="comment[]" />
-              </td>
             </tr>
           `);
         });
 
         $('#brs_added_button2').on('click', function () {
-            if ($('#test_table tr').length > 1) {
-                $('#test_table tr:last').remove();
+            if ($('#sa_table tr').length > 1) {
+                $('#sa_table tr:last').remove();
             }
         });
 

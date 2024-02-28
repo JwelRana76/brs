@@ -7,6 +7,7 @@ use App\Http\Controllers\JlnoController;
 use App\Http\Controllers\MoujaController;
 use App\Http\Controllers\PlotTypeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SaController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\UpazilaController;
@@ -98,8 +99,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update/{id}', [BrsController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [BrsController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [BrsController::class, 'view'])->name('view');
-
-        Route::get('/find_district/{id}', [BrsController::class, 'find_district']);
+    });
+    Route::group(['prefix' => 'sa', 'as' => 'sa.'], function () {
+        Route::get('/', [SaController::class, 'index'])->name('index');
+        Route::get('/create', [SaController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [SaController::class, 'edit'])->name('edit');
+        Route::post('/store', [SaController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [SaController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [SaController::class, 'delete'])->name('delete');
+        Route::get('/view/{id}', [SaController::class, 'view'])->name('view');
     });
 });
 
