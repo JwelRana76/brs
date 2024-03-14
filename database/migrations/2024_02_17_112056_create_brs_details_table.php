@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('brs_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('brs_id')->constrained('brs')->onDelete('cascade');
-            $table->longText('name');
+            $table->longText('name')->nullable();
             $table->string('part')->nullable();
             $table->string('revenue')->nullable();
             $table->string('stain')->nullable();

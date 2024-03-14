@@ -33,14 +33,11 @@
                 <hr>
               </div>
               <div class="col-md-12">
-                <button type="button" class="btn brs-added-button2" id="brs_added_button2"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn brs-added-button mr-2" id="brs_added_button"><i class="fa fa-plus"></i></button>
                 <table class="table table-bordered brs-table" style="font-size:12px">
                     <thead>
                         <tr>
-                            <th>মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা</th>
+                            <th style="width:230px">মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা</th>
                             <th>অংশ</th>
-                            <th>রাজস্ব</th>
                             <th>দাগ নং</th>
                             <th colspan="2">জমির শ্রেণী</th>
                             <th colspan="2">দাগের মোট পরিমাণ</th>
@@ -51,7 +48,6 @@
                         <tr>
                           <th>১ *</th>
                           <th>২</th>
-                          <th>৩</th>
                           <th>৪</th>
                           <th>কৃষি ৫(ক)</th>
                           <th>অকৃষি ৫(খ)</th>
@@ -70,9 +66,6 @@
                         </td>
                         <td>
                           <x-input2 id="part" name="part[]" />
-                        </td>
-                        <td>
-                          <x-input2 id="revenue" name="revenue[]" />
                         </td>
                         <td>
                           <x-input2 id="stain" name="stain[]" />
@@ -103,9 +96,15 @@
                         </td>
                       </tr>
                     </tbody>
+                    
+                    
                 </table>
+                    <button type="button" class="btn brs-added-button2" id="brs_added_button2"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn brs-added-button mr-2" id="brs_added_button"><i class="fa fa-plus"></i></button>
               </div>
-            <x-button value="Save" />
+              <div class="col-md-12 text-right">
+                <x-button value="Save" />
+              </div>
             </div>
           </div>
         </div>
@@ -128,9 +127,6 @@
               </td>
               <td>
                 <x-input2 id="part" name="part[]" />
-              </td>
-              <td>
-                <x-input2 id="revenue" name="revenue[]" />
               </td>
               <td>
                 <x-input2 id="stain" name="stain[]" />

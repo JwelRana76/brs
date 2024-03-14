@@ -1,12 +1,94 @@
 <x-admin title="নতুন এসএ">
+    <style>
+        table .form-group{
+            margin-bottom:0px !important;
+        }
+    </style>
     <x-page-header head="নতুন এসএ" />
     <x-form method="post" action="{{ route('sa.store') }}">
       <div class="row">
         <div class="col-md-12">
           <div class="card p-3">
             <div class="row">
-              <div class="col-md-4 m-auto">
-                <x-input3 id="sa_khotian" label="এসএ খতিয়ান" required />
+              <div class="col-md-12">
+                <table class="table table-bordered brs-table" style="font-size:12px;text-align:center">
+                    <thead>
+                        <tr>
+                            <th>খতিয়ান নং *</th>
+                            <th><x-input2 id="sa_khotian" required name="sa_khotian" /></th>
+                            <th colspan="6">অত্র সত্বের নিজ দখলীয় জমি</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">দাগ নং</th>
+                            <th rowspan="2">জমির রকম</th>
+                            <th rowspan="2">মন্তব্য</th>
+                            <th colspan="2">দাগের মোপ পরিমাণ</th>
+                            <th rowspan="2">অত্র সত্বের অংশ</th>
+                            <th colspan="2">অত্র সত্বের অংশের জমির পরিমাণ</th>
+                        </tr>
+                        <tr>
+                          <th>একক</th>
+                          <th>শতক</th>
+                          <th>একক</th>
+                          <th>শতক</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sa_table_part_1">
+                      <tr>
+                        <td>
+                          <x-input2 id="part1" name="part1[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part2" name="part2[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part3" name="part3[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part4" name="part4[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part5" name="part5[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part6" name="part6[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part7" name="part7[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part8" name="part8[]" />
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn brs-added-button2" id="sa_added_button_part1_minus"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn brs-added-button mr-2" id="sa_added_button_part1_plus"><i class="fa fa-plus"></i></button>
+              </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="col-md-12">
+                <table class="table table-bordered brs-table" style="font-size:12px;text-align:center">
+                    <thead>
+                        <tr>
+                            <th>অধীনস্থ স্বত্তের খাজানা প্রাপকের খতিয়ান নম্বর (মায় বাটা)</th>
+                            <th>অধীনস্থ স্বত্তের বিভিন্ন খতিয়ানের নম্বর</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sa_table_part_2">
+                      <tr>
+                        <td>
+                          <x-input2 id="part9" name="part9[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part10" name="part10[]" />
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn brs-added-button2" id="sa_added_button_part2_minus"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn brs-added-button mr-2" id="sa_added_button_part2_plus"><i class="fa fa-plus"></i></button>
               </div>
               <div class="col-md-12">
                 <hr>
@@ -36,8 +118,6 @@
                 <hr>
               </div>
               <div class="col-md-12">
-                <button type="button" class="btn brs-added-button2" id="brs_added_button2"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn brs-added-button mr-2" id="brs_added_button"><i class="fa fa-plus"></i></button>
                 <table class="table table-bordered brs-table" style="font-size:12px">
                     <thead>
                         <tr>
@@ -61,37 +141,78 @@
                     <tbody id="sa_table">
                       <tr>
                         <td>
-                          <x-input2 id="khotian_no" name="khotian_no[]" />
+                          <x-input2 id="part11" name="part11[]" />
                         </td>
                         <td>
-                          <x-textarea2 id="details" required name="details[]" />
+                          <x-textarea2 id="part12" name="part12[]" />
                         </td>
                         <td>
-                          <x-input2 id="part" name="part[]" />
+                          <x-input2 id="part13" name="part13[]" />
                         </td>
                         <td>
-                          <x-input2 id="khajna" name="khajna[]" />
+                          <x-input2 id="part14" name="part14[]" />
                         </td>
                         <td>
-                          <x-input2 id="cell" name="cell[]" />
+                          <x-input2 id="part15" name="part15[]" />
                         </td>
                         <td>
-                          <x-input2 id="edu_cell" name="edu_cell[]" />
+                          <x-input2 id="part16" name="part16[]" />
                         </td>
                         <td>
-                          <x-textarea2 id="comment" required name="comment[]" />
+                          <x-textarea2 id="part17" name="part17[]" />
                         </td>
                         <td>
-                          <x-input2 id="khanja2" name="khanja2[]" />
+                          <x-input2 id="part18" name="part18[]" />
                         </td>
                         <td>
-                          <x-input2 id="cell2" name="cell2[]" />
+                          <x-input2 id="part19" name="part19[]" />
                         </td>
                       </tr>
                     </tbody>
                 </table>
+                <button type="button" class="btn brs-added-button2" id="brs_added_button2"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn brs-added-button mr-2" id="brs_added_button"><i class="fa fa-plus"></i></button>
               </div>
-            <x-button value="Save" />
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="col-md-12">
+                <table class="table table-bordered brs-table" style="font-size:12px">
+                    <thead>
+                        <tr>
+                          <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
+                          <th>অংশ</th>
+                          <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
+                          <th>অংশ</th>
+                          <th>অত্র স্বত্তের শ্রেণী (এবং বিশেষ নিয়ম ও অনুসঙ্গ  )</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sa_table_part_3">
+                      <tr>
+                        <td>
+                          <x-textarea2 id="part20" name="part20[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part21" name="part21[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part22" name="part22[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part23" name="part23[]" />
+                        </td>
+                        <td>
+                          <x-input2 id="part24" name="part24[]" />
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn brs-added-button2" id="sa_added_button_part3_minus"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn brs-added-button mr-2" id="sa_added_button_part3_plus"><i class="fa fa-plus"></i></button>
+              </div>
+            <div class="col-md-12 text-right">
+                <x-button value="Save" />
+              </div>
             </div>
           </div>
         </div>
@@ -106,6 +227,85 @@
         const mouja = @json($moujas);
         const jlno = @json($jlnos);
 
+        $('#sa_added_button_part1_plus').on('click', function () {
+          $('#sa_table_part_1').append(`
+            <tr>
+                <td>
+                  <x-input2 id="khotian_no" name="khotian_no[]" />
+                </td>
+                <td>
+                  <x-input2 id="details" required name="details[]" />
+                </td>
+                <td>
+                  <x-input2 id="part" name="part[]" />
+                </td>
+                <td>
+                  <x-input2 id="khajna" name="khajna[]" />
+                </td>
+                <td>
+                  <x-input2 id="cell" name="cell[]" />
+                </td>
+                <td>
+                  <x-input2 id="edu_cell" name="edu_cell[]" />
+                </td>
+                <td>
+                  <x-input2 id="comment" required name="comment[]" />
+                </td>
+                <td>
+                  <x-input2 id="khanja2" name="khanja2[]" />
+                </td>
+              </tr>
+          `);
+        });
+        $('#sa_added_button_part1_minus').on('click', function () {
+            if ($('#sa_table_part_1 tr').length > 1) {
+                $('#sa_table_part_1 tr:last').remove();
+            }
+        });
+        $('#sa_added_button_part2_plus').on('click', function () {
+          $('#sa_table_part_2').append(`
+            <tr>
+                <td>
+                  <x-input2 id="khotian_no" name="khotian_no[]" />
+                </td>
+                <td>
+                  <x-input2 id="details" required name="details[]" />
+                </td>
+              </tr>
+          `);
+        });
+        $('#sa_added_button_part2_minus').on('click', function () {
+            if ($('#sa_table_part_2 tr').length > 1) {
+                $('#sa_table_part_2 tr:last').remove();
+            }
+        });
+        $('#sa_added_button_part3_plus').on('click', function () {
+          $('#sa_table_part_3').append(`
+              <tr>
+                <td>
+                  <x-textarea2 id="details" required name="details[]" />
+                </td>
+                <td>
+                  <x-input2 id="part" name="part[]" />
+                </td>
+                <td>
+                  <x-input2 id="khajna" name="khajna[]" />
+                </td>
+                <td>
+                  <x-input2 id="cell" name="cell[]" />
+                </td>
+                <td>
+                  <x-input2 id="edu_cell" name="edu_cell[]" />
+                </td>
+              </tr>
+          `);
+        });
+        $('#sa_added_button_part3_minus').on('click', function () {
+            if ($('#sa_table_part_3 tr').length > 1) {
+                $('#sa_table_part_3 tr:last').remove();
+            }
+        });
+        
         $('#brs_added_button').on('click', function () {
           $('#sa_table').append(`
             <tr>

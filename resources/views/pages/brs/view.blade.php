@@ -110,7 +110,7 @@
                 <span style="font-size:16px !important" class="khotian">খতিয়ান নং- {{ convertToBangla($brs->khotian_no) }}</span> <br><br>
                 থানাঃ- {{ $brs->jlno->mouja->upazila->name }}</th>
               <th colspan="2"><br><br>মৌজাঃ- {{ $brs->jlno->mouja->name }}</th>
-              <th colspan="2"><br><br>জে,এল,নং- {{ convertToBangla($brs->jlno->name) }}</th>
+              <th colspan="2"><br><br>জে,এল,নং- {{ convertToBangla($brs->jlno->name )}}</th>
               <th colspan="2" id="pageNumbers">
                 পৃষ্ঠা নং-১ <br><br>
                 রেঃ সাঃ নং- {{ convertToBangla($brs->resa_no) }}</th>
@@ -147,7 +147,7 @@
               $total_plot_amount2 = 0;
           @endphp
           <tbody>
-            @foreach ($brs->brs_details as $details)
+            @foreach ($brs->brs_details as $key=>$details)
             <tr>
               @php
                   $total_part += floatVal($details->part);
@@ -158,7 +158,15 @@
               <td>{!! nl2br(e($details->name)) !!}</td> {{-- this type of code written so that the value is shown when input the textarea value exjuctly same --}}
               <td>{{ convertToBangla($details->part) }}</td>
               <td>{{ convertToBangla($details->revenue) }}</td>
-              <td>{{ convertToBangla($details->stain) }}</td>
+              <td>
+                        @php
+                            $array = explode("/", $details->stain);
+                        @endphp
+                    @if(count($array) > 1)
+                      {{ convertToBangla($array[0]) }} <hr style="margin:0px"> {{ convertToBangla($array[1]) }}</td>
+                    @else
+                      {{ convertToBangla($details->stain) }}</td>
+                    @endif
               <td>{{ $details->plottype1 }}</td>
               <td>{{ $details->plottype2 }}</td>
               <td>{{ convertToBangla($details->amount1) }}</td>
@@ -200,16 +208,16 @@
 </div> --}}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-    window.matchMedia('print').addListener(function(media){
-        if(media.matches) {
-            var pageCount = 0;
-            window.onbeforeprint = function () {
-                pageCount++;
-                var pageNumberDiv = document.getElementById('pageNumbers');
-                pageNumberDiv.innerHTML = "পৃষ্ঠা নং-" + pageCount + "<br><br>রেঃ সাঃ নং- {{ $brs->resa_no }}";
-            }
-        }
-    });
+    // window.matchMedia('print').addListener(function(media){
+    //     if(media.matches) {
+    //         var pageCount = 0;
+    //         window.onbeforeprint = function () {
+    //             pageCount++;
+    //             var pageNumberDiv = document.getElementById('pageNumbers');
+    //             pageNumberDiv.innerHTML = "পৃষ্ঠা নং-" + pageCount + "<br><br>রেঃ সাঃ নং- {{ $brs->resa_no }}";
+    //         }
+    //     }
+    // });
 </script>
 
 </body>

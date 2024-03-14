@@ -39,44 +39,42 @@ class SaController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate(
             [
-                'khotian_no' => 'required',
+                'sa_khotian' => 'required',
             ]
         );
         $data = $request->all();
         $message = $this->baseService->create($data);
-        return redirect()->route('brs.index')->with($message);
+        return redirect()->route('sa.index')->with($message);
     }
     function edit($id)
     {
-        $brs = Brs::findOrFail($id);
+        $sa = Sa::findOrFail($id);
 
         $divisions = Division::all();
         $districts = District::all();
         $upazilas = Upazila::all();
         $moujas = Mouja::all();
         $jlnos = Jlno::all();
-        return view('pages.brs.edit', compact('brs', 'divisions', 'districts', 'upazilas', 'moujas', 'jlnos'));
+        return view('pages.sa.edit', compact('sa', 'divisions', 'districts', 'upazilas', 'moujas', 'jlnos'));
     }
     public function update(Request $request, $id)
     {
         $request->validate(
             [
-                'khotian_no' => 'required',
+                'sa_khotian' => 'required',
                 'division' => 'required',
                 'district' => 'required',
                 'upazila' => 'required',
                 'mouja' => 'required',
                 'jlno' => 'required',
                 'resa_no' => 'required',
-                'name' => 'required',
             ]
         );
         $data = $request->all();
         $message = $this->baseService->update($data, $id);
-        return redirect()->route('brs.index')->with($message);
+        return redirect()->route('sa.index')->with($message);
     }
 
     public function view($id)

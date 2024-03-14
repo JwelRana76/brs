@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sa_details', function (Blueprint $table) {
+        Schema::create('sa_details_threes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sa_id')->constrained('sas')->onDelete('cascade');
             $table->string('one')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('six')->nullable();
             $table->string('seven')->nullable();
             $table->string('eight')->nullable();
+            $table->string('nine')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sa_details');
+        Schema::dropIfExists('sa_details_threes');
     }
 };
