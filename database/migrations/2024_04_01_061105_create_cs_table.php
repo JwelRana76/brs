@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sas', function (Blueprint $table) {
+        Schema::create('cs', function (Blueprint $table) {
             $table->id();
             $table->string('unique_id')->unique();
             $table->string('resa_no');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sas');
+        Schema::dropIfExists('cs');
     }
 };

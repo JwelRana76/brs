@@ -1,18 +1,15 @@
-<x-admin title="নতুন এসএ">
+<x-admin title="নতুন সিএস">
   <style>
       table .form-group{
           margin-bottom:0px !important;
       }
   </style>
-  <x-page-header head="নতুন এসএ" />
-  <x-form method="post" action="{{ route('sa.store') }}">
+  <x-page-header head="নতুন সিএস" />
+  <x-form method="post" action="{{ route('cs.store') }}">
     <div class="row">
       <div class="col-md-12">
         <div class="card p-3">
           <div class="row">
-            <div class="col-md-2">
-              <x-select id="division" label="বিভাগ" required :options="$divisions" />
-            </div>
             <div class="col-md-2">
               <x-select id="district" label="জেলা" required :options="$districts" />
             </div>
@@ -38,18 +35,16 @@
               <table class="table table-bordered brs-table" style="font-size:12px">
                   <thead>
                       <tr>
-                          <th colspan="3">উপরিস্থ স্বত্তের</th>
-                          <th colspan="3">অত্র স্বত্তের দেয়</th>
+                          <th colspan="2">উপরিস্থ স্বত্তের</th>
+                          <th colspan="2">অত্র স্বত্তের দেয়</th>
                           <th>মন্তব্য</th>
                           <th colspan="2">২৪/১ ধারামতে কোন তারিখ হইতে</th>
                       </tr>
                       <tr>
-                        <th>খতিয়ান নং বা মায় বাটা</th>
                         <th>বিবরণ বা দখলদার (সংক্ষিপ্ত)</th>
                         <th>পরস্পর অংশ</th>
                         <th>খাজনা</th>
                         <th>সেল</th>
-                        <th>শিক্ষা সেল</th>
                         <th></th>
                         <th>খাজনা</th>
                         <th>সেল</th>
@@ -77,12 +72,6 @@
                       </td>
                       <td>
                         <x-textarea2 id="part17" name="part17[]" />
-                      </td>
-                      <td>
-                        <x-input2 id="part18" name="part18[]" />
-                      </td>
-                      <td>
-                        <x-input2 id="part19" name="part19[]" />
                       </td>
                     </tr>
                   </tbody>

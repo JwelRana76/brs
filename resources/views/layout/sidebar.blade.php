@@ -58,15 +58,15 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cs"
+        <a class="nav-link {{ Request::is('cs*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#cs"
             aria-expanded="true" aria-controls="cs">
             <i class="fas fa-fw fa-users"></i>
             <span>সিএস</span>
         </a>
-        <div id="cs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="cs" class="collapse {{ Request::is('cs*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন সিএস</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> সিএস তালিকা</a>
+                <a class="collapse-item {{ Request::is('cs/create') ? 'active' : '' }}" href="{{ route('cs.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন সিএস</a>
+                <a class="collapse-item {{ Request::is('cs') ? 'active' : '' }}" href="{{ route('cs.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> সিএস তালিকা</a>
             </div>
         </div>
     </li>

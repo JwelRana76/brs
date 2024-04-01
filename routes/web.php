@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrsController;
+use App\Http\Controllers\CsController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\JlnoController;
@@ -108,6 +109,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update/{id}', [SaController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [SaController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [SaController::class, 'view'])->name('view');
+    });
+    Route::group(['prefix' => 'cs', 'as' => 'cs.'], function () {
+        Route::get('/', [CsController::class, 'index'])->name('index');
+        Route::get('/create', [CsController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [CsController::class, 'edit'])->name('edit');
+        Route::post('/store', [CsController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [CsController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [CsController::class, 'delete'])->name('delete');
+        Route::get('/view/{id}', [CsController::class, 'view'])->name('view');
     });
 });
 

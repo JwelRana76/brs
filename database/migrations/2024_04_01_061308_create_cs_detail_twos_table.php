@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sas', function (Blueprint $table) {
+        Schema::create('cs_detail_twos', function (Blueprint $table) {
             $table->id();
-            $table->string('unique_id')->unique();
-            $table->string('resa_no');
-            $table->foreignId('jlno_id')->constrained('jlnos')->onDelete('cascade');
-            $table->string('khotian_no');
-            $table->string('touja_no');
-            $table->string('porogona');
+            $table->foreignId('cs_id')->constrained('cs')->onDelete('cascade');
+            $table->string('one')->nullable();
+            $table->string('two')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sas');
+        Schema::dropIfExists('cs_detail_twos');
     }
 };
