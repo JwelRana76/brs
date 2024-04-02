@@ -1,4 +1,4 @@
-<x-admin title="এসএ">
+<x-admin title="সিএস">
     <x-page-header head="সিএস" />
     <div class="row">
         <div class="col-md-12">

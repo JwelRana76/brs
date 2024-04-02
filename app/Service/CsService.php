@@ -53,7 +53,7 @@ class CsService extends Service
       // dd($sa);
       if ($data['part1']) {
         foreach ($data['part1'] as $key => $part1) {
-          $detailsOne['sa_id'] = $sa->id;
+          $detailsOne['cs_id'] = $sa->id;
           $detailsOne['one'] = $data['part1'][$key];
           $detailsOne['two'] = $data['part2'][$key];
           $detailsOne['three'] = $data['part3'][$key];
@@ -67,7 +67,7 @@ class CsService extends Service
       }
       if ($data['part9']) {
         foreach ($data['part9'] as $key => $part1) {
-          $detailstwo['sa_id'] = $sa->id;
+          $detailstwo['cs_id'] = $sa->id;
           $detailstwo['one'] = $data['part9'][$key];
           $detailstwo['two'] = $data['part10'][$key];
           $detailstwo = $this->detailTwo::create($detailstwo);
@@ -75,7 +75,7 @@ class CsService extends Service
       }
       if ($data['part11']) {
         foreach ($data['part11'] as $key => $part1) {
-          $detailsThree['sa_id'] = $sa->id;
+          $detailsThree['cs_id'] = $sa->id;
           $detailsThree['one'] = $data['part11'][$key];
           $detailsThree['two'] = $data['part12'][$key];
           $detailsThree['three'] = $data['part13'][$key];
@@ -88,7 +88,7 @@ class CsService extends Service
       }
       if ($data['part20']) {
         foreach ($data['part20'] as $key => $part1) {
-          $detailsFour['sa_id'] = $sa->id;
+          $detailsFour['cs_id'] = $sa->id;
           $detailsFour['one'] = $data['part20'][$key];
           $detailsFour['two'] = $data['part21'][$key];
           $detailsFour['three'] = $data['part22'][$key];
@@ -110,7 +110,7 @@ class CsService extends Service
   {
     DB::beginTransaction();
     try {
-      $sa = Sa::findOrFail($id);
+      $sa = Cs::findOrFail($id);
       $sa_data['khotian_no'] = $data['khotian_no'];
       $sa_data['unique_id'] = $this->unique_id($data['khotian_no'], $data['mouja']);
       $sa_data['jlno_id'] = $data['jlno'];
@@ -120,10 +120,10 @@ class CsService extends Service
       $sa->update($sa_data);
 
       // dd($sa);
-      $sa->saDetailsOne()->delete();
+      $sa->csDetailsOne()->delete();
       if ($data['part1']) {
         foreach ($data['part1'] as $key => $part1) {
-          $detailsOne['sa_id'] = $sa->id;
+          $detailsOne['cs_id'] = $sa->id;
           $detailsOne['one'] = $data['part1'][$key];
           $detailsOne['two'] = $data['part2'][$key];
           $detailsOne['three'] = $data['part3'][$key];
@@ -135,19 +135,19 @@ class CsService extends Service
           $detailsOne = $this->detailOne::create($detailsOne);
         }
       }
-      $sa->saDetailsTwo()->delete();
+      $sa->csDetailsTwo()->delete();
       if ($data['part9']) {
         foreach ($data['part9'] as $key => $part1) {
-          $detailstwo['sa_id'] = $sa->id;
+          $detailstwo['cs_id'] = $sa->id;
           $detailstwo['one'] = $data['part9'][$key];
           $detailstwo['two'] = $data['part10'][$key];
           $detailstwo = $this->detailTwo::create($detailstwo);
         }
       }
-      $sa->saDetailsThree()->delete();
+      $sa->csDetailsThree()->delete();
       if ($data['part11']) {
         foreach ($data['part11'] as $key => $part1) {
-          $detailsThree['sa_id'] = $sa->id;
+          $detailsThree['cs_id'] = $sa->id;
           $detailsThree['one'] = $data['part11'][$key];
           $detailsThree['two'] = $data['part12'][$key];
           $detailsThree['three'] = $data['part13'][$key];
@@ -158,10 +158,10 @@ class CsService extends Service
           $detailsThree = $this->detailThree::create($detailsThree);
         }
       }
-      $sa->saDetailsFour()->delete();
+      $sa->csDetailsFour()->delete();
       if ($data['part20']) {
         foreach ($data['part20'] as $key => $part1) {
-          $detailsFour['sa_id'] = $sa->id;
+          $detailsFour['cs_id'] = $sa->id;
           $detailsFour['one'] = $data['part20'][$key];
           $detailsFour['two'] = $data['part21'][$key];
           $detailsFour['three'] = $data['part22'][$key];

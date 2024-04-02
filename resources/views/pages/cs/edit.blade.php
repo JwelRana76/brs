@@ -1,17 +1,20 @@
-<x-admin title="এসএ সংস্করণ">
+<x-admin title="সিএস সংস্করণ">
   <style>
       table .form-group{
           margin-bottom:0px !important;
       }
   </style>
-  <x-page-header head="এসএ সংস্করণ" />
-  <x-form method="post" action="{{ route('sa.update',$sa->id) }}">
+  <x-page-header head="সিএস সংস্করণ" />
+  <x-form method="post" action="{{ route('cs.update',$sa->id) }}">
     <div class="row">
       <div class="col-md-12">
         <div class="card p-3">
           <div class="row">
-            <div class="col-md-2">
-              <x-select id="division" label="বিভাগ" selectedId="{{ $sa->jlno->mouja->upazila->district->division_id }}" required :options="$divisions" />
+            <div class="col-md-4 m-auto">
+              <x-input3 id="khotian_no" value="{{ $sa->khotian_no }}" label="খতিয়ান নং" required />
+            </div>
+            <div class="col-md-12">
+              <hr>
             </div>
             <div class="col-md-2">
               <x-select id="district" label="জেলা" selectedId="{{ $sa->jlno->mouja->upazila->district_id }}" required :options="$districts" />
@@ -31,6 +34,9 @@
             <div class="col-md-2">
               <x-input id="tougi_no" value="{{ $sa->touja_no }}" label="তৌজি নং" required />
             </div>
+            <div class="col-md-2">
+              <x-input id="porogona" value="{{ $sa->porogona }}" label="পরগণা" required />
+            </div>
             <div class="col-md-12">
               <hr>
             </div>
@@ -38,26 +44,24 @@
               <table class="table table-bordered brs-table" style="font-size:12px">
                   <thead>
                       <tr>
-                          <th colspan="3">উপরিস্থ স্বত্তের</th>
-                          <th colspan="3">অত্র স্বত্তের দেয়</th>
+                          <th colspan="2">উপরিস্থ স্বত্তের</th>
+                          <th colspan="2">অত্র স্বত্তের দেয়</th>
                           <th>মন্তব্য</th>
                           <th colspan="2">২৪/১ ধারামতে কোন তারিখ হইতে</th>
                       </tr>
                       <tr>
-                        <th>খতিয়ান নং বা মায় বাটা</th>
                         <th>বিবরণ বা দখলদার (সংক্ষিপ্ত)</th>
                         <th>পরস্পর অংশ</th>
                         <th>খাজনা</th>
                         <th>সেল</th>
-                        <th>শিক্ষা সেল</th>
                         <th></th>
                         <th>খাজনা</th>
                         <th>সেল</th>
                       </tr>
                   </thead>
                   <tbody id="sa_table">
-                    @if ($sa->saDetailsTwo)
-                      @foreach ($sa->saDetailsThree as $detailsone)
+                    @if ($sa->csDetailsTwo)
+                      @foreach ($sa->csDetailsThree as $detailsone)
                       <tr>
                         <td>
                           <x-input2 id="part11" value="{{ $detailsone->one }}" name="part11[]" />
@@ -80,12 +84,6 @@
                         <td>
                           <x-textarea2 id="part17" value="{{ $detailsone->seven }}" name="part17[]" />
                         </td>
-                        <td>
-                          <x-input2 id="part18" value="{{ $detailsone->eight }}" name="part18[]" />
-                        </td>
-                        <td>
-                          <x-input2 id="part19" value="{{ $detailsone->nine }}" name="part19[]" />
-                        </td>
                       </tr>
                       @endforeach
                     @endif
@@ -106,8 +104,8 @@
                       </tr>
                   </thead>
                   <tbody id="sa_table_part_2">
-                    @if ($sa->saDetailsTwo)
-                      @foreach ($sa->saDetailsTwo as $detailsone)
+                    @if ($sa->csDetailsTwo)
+                      @foreach ($sa->csDetailsTwo as $detailsone)
                       <tr>
                         <td>
                           <x-input2 id="part9" value="{{ $detailsone->one }}" name="part9[]" />
@@ -131,7 +129,7 @@
                   <thead>
                       <tr>
                           <th>খতিয়ান নং *</th>
-                          <th><x-input2 id="sa_khotian" value="{{ $sa->khotian_no }}" required name="sa_khotian" /></th>
+                          <th>{{ $sa->khotian_no }}</th>
                           <th colspan="6">অত্র সত্বের নিজ দখলীয় জমি</th>
                       </tr>
                       <tr>
@@ -150,8 +148,8 @@
                       </tr>
                   </thead>
                   <tbody id="sa_table_part_1">
-                    @if ($sa->saDetailsOne)
-                      @foreach ($sa->saDetailsOne as $detailsone)
+                    @if ($sa->csDetailsOne)
+                      @foreach ($sa->csDetailsOne as $detailsone)
                       <tr>
                         <td>
                           <x-input2 id="part1" value="{{ $detailsone->one }}" name="part1[]" />
@@ -201,8 +199,8 @@
                       </tr>
                   </thead>
                   <tbody id="sa_table_part_3">
-                    @if ($sa->saDetailsTwo)
-                      @foreach ($sa->saDetailsFour as $detailsone)
+                    @if ($sa->csDetailsTwo)
+                      @foreach ($sa->csDetailsFour as $detailsone)
                       <tr>
                         <td>
                           <x-textarea2 id="part20" value="{{ $detailsone->one }}" name="part20[]" />

@@ -10,6 +10,12 @@
       <div class="col-md-12">
         <div class="card p-3">
           <div class="row">
+            <div class="col-md-4 m-auto">
+              <x-input3 id="khotian_no" label="খতিয়ান নং" required />
+            </div>
+            <div class="col-md-12">
+              <hr>
+            </div>
             <div class="col-md-2">
               <x-select id="district" label="জেলা" required :options="$districts" />
             </div>
@@ -27,6 +33,9 @@
             </div>
             <div class="col-md-2">
               <x-input id="tougi_no" label="তৌজি নং" required />
+            </div>
+            <div class="col-md-2">
+              <x-input id="porogona" label="পরগণা" required />
             </div>
             <div class="col-md-12">
               <hr>
@@ -112,7 +121,7 @@
                   <thead>
                       <tr>
                           <th>খতিয়ান নং *</th>
-                          <th><x-input2 id="sa_khotian" required name="sa_khotian" /></th>
+                          <th id="khotian"></th>
                           <th colspan="6">অত্র সত্বের নিজ দখলীয় জমি</th>
                       </tr>
                       <tr>

@@ -25,18 +25,18 @@ class Cs extends Model
     }
     public function csDetailsOne()
     {
-        return $this->hasMany(SaDetail::class, 'cs_id');
+        return $this->hasMany(CsDetail::class, 'cs_id');
     }
     public function csDetailsTwo()
     {
-        return $this->hasMany(SaDetailsTwo::class, 'cs_id');
+        return $this->hasMany(CsDetailTwo::class, 'cs_id');
     }
     public function csDetailsThree()
     {
-        return $this->hasMany(SaDetailsThree::class, 'cs_id');
+        return $this->hasMany(CsDetailThree::class, 'cs_id');
     }
     public function csDetailsFour()
     {
-        return $this->hasMany(SaDetailsFour::class, 'cs_id');
+        return $this->hasMany(CsDetailFour::class, 'cs_id');
     }
 }

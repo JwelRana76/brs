@@ -122,6 +122,111 @@
 
     <div id="receipt-data">
       <div class="table">
+        
+        <table>
+          <thead>
+            <tr class="header_details">
+              <td> ই পি ফরম নং ৫৪৬০</td>
+              <th colspan="2"> এস এ খতিয়ান</th>
+              <td style="text-align: right"> ১০১৮/১</td>
+            </tr>
+            <tr class="header_details">
+              <th> জেলাঃ- {{ $sa->jlno->mouja->upazila->district->name }}</th>
+              <th>মৌজাঃ- {{ $sa->jlno->mouja->name }}</th>
+              <th>জে,এল,নং- {{ convertToBangla($sa->jlno->name )}}</th>
+              <th>খতিয়ান নং  {{ convertToBangla($sa->khotian_no) }}</th>
+            </tr>
+            <tr class="header_details">
+              <th> থানাঃ- {{ $sa->jlno->mouja->upazila->district->name }}</th>
+              <th>পরগণাঃ- {{ $sa->porogona }}</th>
+              <th>রেঃ সাঃ নং- {{ convertToBangla($sa->resa_no )}}</th>
+              <th>তৌজি নং-  {{ convertToBangla($sa->touja_no) }}</th>
+            </tr>
+          </thead>
+        </table>
+        <table>
+          <thead>
+            <tr>
+                <th colspan="2">উপরিস্থ স্বত্তের</th>
+                <th colspan="2">অত্র স্বত্তের দেয়</th>
+                <th rowspan="2">মন্তব্য</th>
+                <th colspan="2">২৪/১ ধারামতে কোন তারিখ হইতে</th>
+            </tr>
+            <tr>
+              <th>বিবরণ বা দখলদার (সংক্ষিপ্ত)</th>
+              <th>পরস্পর অংশ</th>
+              <th>খাজনা</th>
+              <th>সেল</th>
+              <th>খাজনা</th>
+              <th>সেল</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($sa->csDetailsThree as $item)
+              <tr>
+                <td>{{ convertToBangla($item->one) }}</td>
+                <td>{{ $item->two }}</td>
+                <td>{{ convertToBangla($item->three) }}</td>
+                <td>{{ convertToBangla($item->four) }}</td>
+                <td>{{ convertToBangla($item->five) }}</td>
+                <td>{{ convertToBangla($item->six) }}</td>
+                <td>{{ $item->seven }}</td>
+              </tr>
+            @endforeach
+            @for($i=count($sa->csDetailsThree);$i<60;$i++)
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            @endfor
+          </tbody>
+        </table>
+        <table class="second_table" style="border-top: none">
+          <thead>
+            <tr>
+              <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
+              <th>অংশ</th>
+              <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
+              <th>অংশ</th>
+              <th>অত্র স্বত্তের শ্রেণী (এবং বিশেষ নিয়ম ও অনুসঙ্গ  )</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($sa->csDetailsFour as $item)
+              <tr>
+                <td>{{ $item->one }}</td>
+                <td>{{ convertToBangla($item->one) }}</td>
+                <td>{{ $item->three }}</td>
+                <td>{{ convertToBangla($item->four) }}</td>
+                <td>{{ $item->five }}</td>
+              </tr>
+            @endforeach
+            @for($i=count($sa->csDetailsFour);$i<60;$i++)
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            @endfor
+          </tbody>
+        </table>
+        <table class="second_table" style="border-top: none">
+          <thead>
+            <tr>
+              <th style="width: 300px"> ৪৯,৫০,৫১,৫২ ও ৫৩ <br> ধারা মতে নোট বা পরিবর্তণ <br>( মায় মোকার্দ্দমা নম্বর ও সন )</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+        <div style="page-break-after: always;"></div>
+
         <table>
           <thead>
             <tr class="header-row">
@@ -148,9 +253,9 @@
             @php
                 $totalOne = 0;
                 $totalTwo = 0;
-                $total_row = count($sa->saDetailsOne);
+                $total_row = count($sa->csDetailsOne);
             @endphp
-            @foreach ($sa->saDetailsOne as $item)
+            @foreach ($sa->csDetailsOne as $item)
             @php
                 $totalOne = $item->seven;
                 $totalTwo = $item->eight;
@@ -166,7 +271,7 @@
                   <td>{{ convertToBangla($item->eight) }}</td>
                 </tr>
             @endforeach
-            @for($i=count($sa->saDetailsOne);$i<60;$i++ )
+            @for($i=count($sa->csDetailsOne);$i<60;$i++ )
             <tr>
               <td></td>
               <td></td>
@@ -196,13 +301,13 @@
               </tr>
           </thead>
           <tbody>
-            @foreach ($sa->saDetailsTwo as $item)
+            @foreach ($sa->csDetailsTwo as $item)
             <tr>
               <td>{{ $item->one }}</td>
               <td colspan="3">{{ convertToBangla($item->two) }}</td>
             </tr>
             @endforeach
-            @for($i=count($sa->saDetailsTwo);$i<30;$i++)
+            @for($i=count($sa->csDetailsTwo);$i<30;$i++)
               <tr>
                 <td></td>
                 <td colspan="3"></td>
@@ -222,119 +327,6 @@
             </tr>
           </tfoot>
         </table> 
-        <div style="page-break-after: always;"></div>
-
-        <table>
-          <thead>
-            <tr class="header_details" style="text-align: right">
-              <th colspan="4""> {{ convertToBangla('1524') }}</th>
-            </tr>
-            <tr class="header_details">
-              <td> ই পি ফরম নং ৫৪৬০</td>
-              <th colspan="2"> এস এ খতিয়ান</th>
-              <td style="text-align: right"> ১০১৮/১</td>
-            </tr>
-            <tr class="header_details">
-              <th> জেলাঃ- {{ $sa->jlno->mouja->upazila->district->name }}</th>
-              <th>মৌজাঃ- {{ $sa->jlno->mouja->name }}</th>
-              <th>জে,এল,নং- {{ convertToBangla($sa->jlno->name )}}</th>
-              <th>খতিয়ান নং  {{ convertToBangla($sa->khotian_no) }}</th>
-            </tr>
-            <tr class="header_details">
-              <th> থানাঃ- {{ $sa->jlno->mouja->upazila->district->name }}</th>
-              <th>পরগণা বামনডাঙ্গা</th>
-              <th>রেঃ সাঃ নং- {{ convertToBangla($sa->resa_no )}}</th>
-              <th>তৌজি নং-  {{ convertToBangla($sa->touja_no) }}</th>
-            </tr>
-          </thead>
-        </table>
-        <table>
-          <thead>
-            <tr>
-                <th colspan="3">উপরিস্থ স্বত্তের</th>
-                <th colspan="3">অত্র স্বত্তের দেয়</th>
-                <th rowspan="2">মন্তব্য</th>
-                <th colspan="2">২৪/১ ধারামতে কোন তারিখ হইতে</th>
-            </tr>
-            <tr>
-              <th>খতিয়ান নং বা মায় বাটা</th>
-              <th>বিবরণ বা দখলদার (সংক্ষিপ্ত)</th>
-              <th>পরস্পর অংশ</th>
-              <th>খাজনা</th>
-              <th>সেল</th>
-              <th>শিক্ষা সেল</th>
-              <th>খাজনা</th>
-              <th>সেল</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($sa->saDetailsThree as $item)
-              <tr>
-                <td>{{ convertToBangla($item->one) }}</td>
-                <td>{{ $item->two }}</td>
-                <td>{{ convertToBangla($item->three) }}</td>
-                <td>{{ convertToBangla($item->four) }}</td>
-                <td>{{ convertToBangla($item->five) }}</td>
-                <td>{{ convertToBangla($item->six) }}</td>
-                <td>{{ $item->seven }}</td>
-                <td>{{ convertToBangla($item->eight) }}</td>
-                <td>{{ convertToBangla($item->nine) }}</td>
-              </tr>
-            @endforeach
-            @for($i=count($sa->saDetailsThree);$i<60;$i++)
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            @endfor
-          </tbody>
-        </table>
-        <table class="second_table" style="border-top: none">
-          <thead>
-            <tr>
-              <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
-              <th>অংশ</th>
-              <th>অত্র স্বত্তের বিবরণ ও দখলকার</th>
-              <th>অংশ</th>
-              <th>অত্র স্বত্তের শ্রেণী (এবং বিশেষ নিয়ম ও অনুসঙ্গ  )</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($sa->saDetailsFour as $item)
-              <tr>
-                <td>{{ $item->one }}</td>
-                <td>{{ convertToBangla($item->one) }}</td>
-                <td>{{ $item->three }}</td>
-                <td>{{ convertToBangla($item->four) }}</td>
-                <td>{{ $item->five }}</td>
-              </tr>
-            @endforeach
-            @for($i=count($sa->saDetailsFour);$i<60;$i++)
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            @endfor
-          </tbody>
-        </table>
-        <table class="second_table" style="border-top: none">
-          <thead>
-            <tr>
-              <th style="width: 300px"> ৪৯,৫০,৫১,৫২ ও ৫৩ <br> ধারা মতে নোট বা পরিবর্তণ <br>( মায় মোকার্দ্দমা নম্বর ও সন )</th>
-              <th></th>
-            </tr>
-          </thead>
-        </table>
       </div> 
     </div>
 </div>

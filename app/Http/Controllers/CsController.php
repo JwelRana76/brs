@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cs;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Jlno;
 use App\Models\Mouja;
 use App\Models\Sa;
 use App\Models\Upazila;
+use App\Service\CsService;
 use App\Service\SaService;
 use Illuminate\Http\Request;
 
@@ -15,12 +17,12 @@ class CsController extends Controller
 {
     public function __construct()
     {
-        $this->baseService = new SaService();
+        $this->baseService = new CsService();
     }
     public function index()
     {
         $item = $this->baseService->Index();
-        $columns = Sa::$columns;
+        $columns = Cs::$columns;
         if (request()->ajax()) {
             return $item;
         }
@@ -41,7 +43,7 @@ class CsController extends Controller
     {
         $request->validate(
             [
-                'sa_khotian' => 'required',
+                'khotian_no' => 'required',
             ]
         );
         $data = $request->all();
@@ -50,7 +52,7 @@ class CsController extends Controller
     }
     function edit($id)
     {
-        $sa = Sa::findOrFail($id);
+        $sa = Cs::findOrFail($id);
 
         $divisions = Division::all();
         $districts = District::all();
@@ -63,13 +65,7 @@ class CsController extends Controller
     {
         $request->validate(
             [
-                'sa_khotian' => 'required',
-                'division' => 'required',
-                'district' => 'required',
-                'upazila' => 'required',
-                'mouja' => 'required',
-                'jlno' => 'required',
-                'resa_no' => 'required',
+                'khotian_no' => 'required',
             ]
         );
         $data = $request->all();
@@ -79,7 +75,7 @@ class CsController extends Controller
 
     public function view($id)
     {
-        $sa = Sa::findOrFail($id);
+        $sa = Cs::findOrFail($id);
         return view('pages.cs.view', compact('sa'));
     }
     function delete($id)
