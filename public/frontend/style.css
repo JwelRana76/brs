@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: #ddd;
+}
+
+header {
+  background: white;
+}
+
+footer {
+  padding-top: 20px;
+  margin-top: 20px;
+  background: white;
+}
+
+.footer .first-ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.footer .first-ul li {
+  padding: 8px 0 8px 0;
+}
+
+.footer .social-icon {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-size: 30px;
+}
+
+.second-footer {
+  background: #5abd6a;
+  line-height: 50px;
+  margin-bottom: 0px !important;
+}

@@ -12,6 +12,7 @@ class Brs extends Model
     protected $guarded = ['id'];
 
     public static $columns = [
+        ['name' => 'তারিখ', 'data' => 'date'],
         ['name' => 'খতিয়ান নং', 'data' => 'khotian_no'],
         ['name' => 'ইউনিক আইডি', 'data' => 'unique_id'],
         ['name' => 'মৌজা', 'data' => 'mouja'],
@@ -22,6 +23,10 @@ class Brs extends Model
     public function jlno()
     {
         return $this->belongsTo(Jlno::class);
+    }
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
     }
     public function brs_details()
     {

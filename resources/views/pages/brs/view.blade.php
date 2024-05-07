@@ -15,7 +15,7 @@
         }
         * {
             line-height: 16px;
-            font-size:14px !important;
+            font-size:10px !important;
         }
         .btn {
             padding: 7px 10px;
@@ -36,7 +36,7 @@
             width: 90%;
             float: left;
             text-align: center;
-            font-size: 18px !important;
+            font-size: 10px !important;
             font-weight: bold !important;
         }
         .right-section{
@@ -64,6 +64,7 @@
         .header_details th{
             line-height: 20px;
             padding: 5px 10px !important;
+            font-size:10px !important;
         }
         tbody tr td{
             border-top: none;
@@ -90,9 +91,6 @@
     </style>
 </head>
 <body>
-  @php
-      
-  @endphp
 <div class="container" style="max-width: 1000px;margin:20px auto">
     <div class="hidden-print">
         <button onclick="window.print();" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
@@ -104,19 +102,23 @@
         <table>
           <thead>
             <tr class="header_details">
-              <th> <br><br>বিভাগঃ- {{ $brs->jlno->mouja->upazila->district->division->name }}</th>
+              <th> <br><br>বিভাগঃ- {{ $brs->division->name }}</th>
               <th colspan="3"> <br><br>জেলাঃ- {{ $brs->jlno->mouja->upazila->district->name }}</th>
               <th colspan="2">
-                <span style="font-size:16px !important" class="khotian">খতিয়ান নং- {{ convertToBangla($brs->khotian_no) }}</span> <br><br>
+                <span style="font-size:14px !important" class="khotian">
+                    {{$brs->khotian_title == 1 ? 'বিআরএস নং-':($brs->khotian_title == 2 ? 'খতিয়ান নং-':'আরএস নং-')}}
+                    {{ convertToBangla($brs->khotian_no) }}</span> <br><br>
                 থানাঃ- {{ $brs->jlno->mouja->upazila->name }}</th>
               <th colspan="2"><br><br>মৌজাঃ- {{ $brs->jlno->mouja->name }}</th>
               <th colspan="2"><br><br>জে,এল,নং- {{ convertToBangla($brs->jlno->name )}}</th>
               <th colspan="2" id="pageNumbers">
-                পৃষ্ঠা নং-১ <br><br>
+                পৃষ্ঠা নং-১ <br>
+                {{convertToBangla($brs->form_no)}}
+                <br>
                 রেঃ সাঃ নং- {{ convertToBangla($brs->resa_no) }}</th>
             </tr>
             <tr>
-                <th>মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা</th>
+                <th>মালিক, অকৃষি, প্রঙ্গা বা ইজারাদারের নাম ও ঠিকানা</th>
                 <th>অংশ</th>
                 <th>রাজস্ব</th>
                 <th>দাগ নং</th>
@@ -150,10 +152,10 @@
             @foreach ($brs->brs_details as $key=>$details)
             <tr>
               @php
-                  $total_part += floatVal($details->part);
+                  $total_part += floatval(banglaToEnglishNumber($details->part));
 
-                  $total_plot_amount1 += floatVal($details->plot_amount1);
-                  $total_plot_amount2 += floatVal($details->plot_amount2);
+                  $total_plot_amount1 += floatval(banglaToEnglishNumber($details->plot_amount1));
+                  $total_plot_amount2 += floatval(banglaToEnglishNumber($details->plot_amount2));
               @endphp
               <td>{!! nl2br(e($details->name)) !!}</td> {{-- this type of code written so that the value is shown when input the textarea value exjuctly same --}}
               <td>{{ convertToBangla($details->part) }}</td>
@@ -181,19 +183,26 @@
           <tfoot>
             <tr>
               <td>....... ধারা মতে নোট বা পরিবর্তন মায় মোকদ্দমা নং এবং সন </td>
-              <td>{{ convertToBangla((string)$total_part) }}</td>
+              <td>{{ convertToBangla((string)number_format($total_part,2)) }}</td>
               <td colspan="7" style="text-align: center"><span style="float: right">মোট জমিঃ-</span>  <br>পরিবার পরিকল্পনা গ্রহন করুন।</td>
-              <td>{{ convertToBangla((string)$total_plot_amount1) }} </td>
-              <td>{{ convertToBangla((string)$total_plot_amount2) }} </td>
+              <td>{{ convertToBangla((string)number_format($total_plot_amount1,2)) }} </td>
+              <td>{{ convertToBangla((string)number_format($total_plot_amount2)) }} </td>
               <td></td>
             </tr>
             <tr>
-              <td style="line-height: 16px" colspan="8">মুদ্রণঃ সেটেলমেন্ট প্রেস, ঢাকা। <span style="margin-left: 30px;">তারিখঃ </span>
+              <td style="line-height: 16px" colspan="5">মুদ্রণঃ সেটেলমেন্ট প্রেস, ঢাকা। <span style="margin-left: 30px;"> 
+                @if(Auth()->user()->role->role_id == 1)তারিখঃ{{convertToBangla($brs->created_at->format('d-m-Y'))}} </span
+                >@endif
                 <br>
                 বাংলাদেশ ফরম নং ৫৪৬২ (সংশোধিত)
               </td>
+              <td colspan="3">
+                  <img src="{{asset('public/img/qr.jpg')}}" alt="img" weight="80px" height="80px" />
+              </td>
               <td colspan="4">
-                কম্পিউটার কোডঃ ৪২৮ ১৫৭৭১-১২২৩৬১৯
+                @if(Auth()->user()->role->role_id == 1)
+                কম্পিউটার কোডঃ {{convertToBangla($brs->computer_code)}}
+                @endif
               </td>
             </tr>
           </tfoot>

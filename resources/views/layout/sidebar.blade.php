@@ -79,7 +79,7 @@
         <div id="dolil" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন দলিল</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> দলিল তালিকা</a>
+                <a class="collapse-item" href="{{ route('front.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> দলিল তালিকা</a>
             </div>
         </div>
     </li>

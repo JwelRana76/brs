@@ -4,6 +4,7 @@ use App\Http\Controllers\BrsController;
 use App\Http\Controllers\CsController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JlnoController;
 use App\Http\Controllers\MoujaController;
 use App\Http\Controllers\PlotTypeController;
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('pages.frontend.index');
+// });
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -119,6 +123,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/delete/{id}', [CsController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [CsController::class, 'view'])->name('view');
     });
+    Route::group(['prefix' => 'front', 'as' => 'front.'], function () {
+        Route::get('/', [FrontendController::class, 'index'])->name('index');
+    });
+
 });
 
 Auth::routes();

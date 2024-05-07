@@ -27,6 +27,9 @@ class BrsService extends Service
       ->addColumn('mouja', function ($item) {
         return $item->jlno->mouja->name ?? 'Rangpur';
       })
+      ->addColumn('date', function ($item) {
+        return $item->created_at->format('d-M-Y');
+      })
       ->addColumn('action', fn ($item) => view('pages.brs.action', compact('item'))->render())
       ->make(true);
   }
@@ -39,17 +42,21 @@ class BrsService extends Service
         return ['warning' => 'মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা প্রদান করা বাধ্যতামুলক'];
       }
 
+      $brs_data['division_id'] = $data['division'];
+      $brs_data['khotian_title'] = $data['khotian_title'];
       $brs_data['khotian_no'] = $data['khotian_no'];
       $brs_data['unique_id'] = $this->unique_id($data['khotian_no'], $data['mouja']);
       $brs_data['jlno_id'] = $data['jlno'];
       $brs_data['resa_no'] = $data['resa_no'];
+      $brs_data['created_at'] = $data['date'];
+      $brs_data['computer_code'] = $data['computer_code'];
+      $brs_data['form_no'] = $data['form_no'];
       $brs = $this->model::create($brs_data);
 
       foreach ($name as $key => $name) {
         $details['brs_id'] = $brs->id;
         $details['name'] = $name;
         $details['part'] = $data['part'][$key];
-        $details['revenue'] = $data['revenue'][$key];
         $details['stain'] = $data['stain'][$key];
         $details['plottype1'] = $data['plottype1'][$key];
         $details['plottype2'] = $data['plottype2'][$key];
@@ -79,10 +86,15 @@ class BrsService extends Service
         return ['warning' => 'মালিক, অকৃষি, প্রজ্জা বা ইজারাদারের নাম ও ঠিকানা প্রদান করা বাধ্যতামুলক'];
       }
 
+      $brs_data['division_id'] = $data['division'];
+      $brs_data['khotian_title'] = $data['khotian_title'];
       $brs_data['khotian_no'] = $data['khotian_no'];
       $brs_data['unique_id'] = $this->unique_id($data['khotian_no'], $data['mouja']);
       $brs_data['jlno_id'] = $data['jlno'];
       $brs_data['resa_no'] = $data['resa_no'];
+      $brs_data['created_at'] = $data['date'];
+      $brs_data['computer_code'] = $data['computer_code'];
+      $brs_data['form_no'] = $data['form_no'];
       $brs = $this->model::findOrFail($id);
       $brs->update($brs_data);
       $brs->brs_details()->delete();
@@ -91,7 +103,6 @@ class BrsService extends Service
         $details['brs_id'] = $brs->id;
         $details['name'] = $name;
         $details['part'] = $data['part'][$key];
-        $details['revenue'] = $data['revenue'][$key];
         $details['stain'] = $data['stain'][$key];
         $details['plottype1'] = $data['plottype1'][$key];
         $details['plottype2'] = $data['plottype2'][$key];
@@ -111,5 +122,4 @@ class BrsService extends Service
       dd($th->getMessage());
     }
   }
-
 }

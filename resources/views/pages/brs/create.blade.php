@@ -5,8 +5,19 @@
         <div class="col-md-12">
           <div class="card p-3">
             <div class="row">
-              <div class="col-md-4 m-auto">
+              <div class="col-md-3">
+                <label id="khotian_title">টাইটেল সিলেক্ট করুণ</label>
+                <select name="khotian_title" id="khotian_title" class="form-control selectpicker" title="টাইটেল সিলেক্ট করণ" data-live-search="true">
+                    <option value="1">বিআরএস</option>
+                    <option value="2">খতিয়ান</option>
+                    <option value="3">আরএস</option>
+                </select>
+              </div>
+              <div class="col-md-3">
                 <x-input3 id="khotian_no" label="খতিয়ান নং" required />
+              </div>
+              <div class="col-md-3">
+                <x-input id="form_no" label="ফর্ম নম্বর" required />
               </div>
               <div class="col-md-12">
                 <hr>
@@ -21,7 +32,7 @@
                 <x-select id="upazila" label="থানা" required :options="$upazilas" />
               </div>
               <div class="col-md-2">
-                <x-select id="mouja" label="মৌজা" required :options="$moujas" />
+                <x-select id="mouja" label="মৌজা" required :options="[]" />
               </div>
               <div class="col-md-2">
                 <x-select id="jlno" label="জেএল নং" required :options="$jlnos" />
@@ -102,7 +113,13 @@
                     <button type="button" class="btn brs-added-button2" id="brs_added_button2"><i class="fa fa-minus"></i></button>
                     <button type="button" class="btn brs-added-button mr-2" id="brs_added_button"><i class="fa fa-plus"></i></button>
               </div>
-              <div class="col-md-12 text-right">
+              <div class="col-md-4">
+                <x-input type="date" id="date" label="তারিখ" value="{{date('Y-m-d')}}" required />
+              </div>
+              <div class="col-md-4">
+                <x-input id="computer_code" label="কম্পিউটার কোড" required />
+              </div>
+              <div class="col-md-4 text-right">
                 <x-button value="Save" />
               </div>
             </div>
@@ -165,18 +182,18 @@
             }
         });
 
-        $('#division').change(function() {
-            let division_id = $(this).val();
-            $('#district').empty(); // Clear existing options
-            district.filter(function(item){
-                if((item.division_id == division_id)) {
-                    return item;
-                }
-            }).map(function(item){
-                $('#district').append('<option value="' + item.id + '">' + item.name + '</option>');
-            });
-            $('#district').selectpicker('refresh'); // Refresh the selectpicker
-        });
+        // $('#division').change(function() {
+        //     let division_id = $(this).val();
+        //     $('#district').empty(); // Clear existing options
+        //     district.filter(function(item){
+        //         if((item.division_id == division_id)) {
+        //             return item;
+        //         }
+        //     }).map(function(item){
+        //         $('#district').append('<option value="' + item.id + '">' + item.name + '</option>');
+        //     });
+        //     $('#district').selectpicker('refresh'); // Refresh the selectpicker
+        // });
         $('#district').change(function() {
             let district_id = $(this).val();
             $('#upazila').empty(); // Clear existing options
