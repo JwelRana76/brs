@@ -6,6 +6,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JlnoController;
+use App\Http\Controllers\KhajnaController;
 use App\Http\Controllers\MoujaController;
 use App\Http\Controllers\PlotTypeController;
 use App\Http\Controllers\RoleController;
@@ -122,6 +123,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update/{id}', [CsController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [CsController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [CsController::class, 'view'])->name('view');
+    });
+    Route::group(['prefix' => 'khajna', 'as' => 'khajna.'], function () {
+        Route::get('/', [KhajnaController::class, 'index'])->name('index');
+        Route::get('/create', [KhajnaController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [KhajnaController::class, 'edit'])->name('edit');
+        Route::post('/store', [KhajnaController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [KhajnaController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [KhajnaController::class, 'delete'])->name('delete');
+        Route::get('/view/{id}', [KhajnaController::class, 'view'])->name('view');
     });
     Route::group(['prefix' => 'front', 'as' => 'front.'], function () {
         Route::get('/', [FrontendController::class, 'index'])->name('index');

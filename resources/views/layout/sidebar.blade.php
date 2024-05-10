@@ -71,6 +71,19 @@
         </div>
     </li>
     <li class="nav-item">
+        <a class="nav-link {{ Request::is('khajna*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#khajna"
+            aria-expanded="true" aria-controls="khajna">
+            <i class="fas fa-fw fa-users"></i>
+            <span>খাজনা</span>
+        </a>
+        <div id="khajna" class="collapse {{ Request::is('khajna*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('khajna/create') ? 'active' : '' }}" href="{{ route('khajna.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন খাজনা</a>
+                <a class="collapse-item {{ Request::is('khajna') ? 'active' : '' }}" href="{{ route('khajna.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> খাজনা তালিকা</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dolil"
             aria-expanded="true" aria-controls="dolil">
             <i class="fas fa-fw fa-users"></i>
