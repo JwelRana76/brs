@@ -6,6 +6,9 @@
           <div class="card p-3">
             <div class="row">
               <div class="col-md-3">
+                <x-input3 id="date" type="date" label="তারিখ" required />
+              </div>
+              <div class="col-md-3">
                 <x-input3 id="office_name" label="ভুমি অফিসের নাম" required />
               </div>
               <div class="col-md-3">
@@ -79,9 +82,33 @@
               <button type="button" class="btn brs-added-button2" id="sa_added_button_part3_minus"><i class="fa fa-minus"></i></button>
               <button type="button" class="btn brs-added-button mr-2" id="sa_added_button_part3_plus"><i class="fa fa-plus"></i></button>
             </div>
-              <div class="col-md-12 text-right">
-                <x-button value="Save" />
-              </div>
+            <div class="col-md-3">
+              <x-input id="beforethreeYearDue" value="0" min="0" label="৩ বছরের ঊধ্বের বকেয়া" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="threeYearDue" value="0" min="0" label="গত ৩ বছরের বকেয়া" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="due_interest" value="0" min="0" label="বকেয়ার সুদ ও ক্ষতিপূরণ" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="haldabi" value="0" min="0" label="হাল দাবি" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="totaldabi" value="0" min="0" label="মোট দাবি" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="totalcollect" value="0" min="0" label="মোট আদায়" required />
+            </div>
+            <div class="col-md-3">
+              <x-input id="totaldue" value="0" min="0" label="মোট বকেয়া" required />
+            </div>
+            <div class="col-md-3">
+              <x-textarea id="মন্তব্য" name="comment" label="মন্তব্য"  />
+            </div>
+            <div class="col-md-12 text-right">
+              <x-button value="Save" />
+            </div>
             </div>
           </div>
         </div>

@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('mouja_no');
             $table->string('holding_no');
             $table->string('khotian_no');
+            $table->string('beforethreeYearDue')->default(0);
+            $table->string('threeYearDue')->default(0);
+            $table->string('due_interest')->default(0);
+            $table->string('haldabi')->default(0);
+            $table->string('totaldabi')->default(0);
+            $table->string('totalcollect')->default(0);
+            $table->string('totaldue')->default(0);
+            $table->text('comment')->nullable;
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
             $table->integer('user_id')->nullable();

@@ -1,5 +1,5 @@
 <div class="form-group mb-3 {{ $class }}">
-    <label for="{{ $id }}">{{ ucwords(str_replace('_', ' ', $id)) }}
+    <label for="{{ $id }}">{{ ucwords(str_replace('_', ' ', $label == null ? $id:$label)) }}
         <strong> {{$attributes['required'] ? '*' : ''}}
         </strong>
     </label>

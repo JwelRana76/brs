@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -372,8 +372,8 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -585,8 +585,10 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         'App\\Http\\Controllers\\CsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CsController.php',
         'App\\Http\\Controllers\\DistrictController' => __DIR__ . '/../..' . '/app/Http/Controllers/DistrictController.php',
         'App\\Http\\Controllers\\DivisionController' => __DIR__ . '/../..' . '/app/Http/Controllers/DivisionController.php',
+        'App\\Http\\Controllers\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\JlnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/JlnoController.php',
+        'App\\Http\\Controllers\\KhajnaController' => __DIR__ . '/../..' . '/app/Http/Controllers/KhajnaController.php',
         'App\\Http\\Controllers\\MoujaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MoujaController.php',
         'App\\Http\\Controllers\\PlotTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlotTypeController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
@@ -617,7 +619,10 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         'App\\Models\\Division' => __DIR__ . '/../..' . '/app/Models/Division.php',
         'App\\Models\\Gender' => __DIR__ . '/../..' . '/app/Models/Gender.php',
         'App\\Models\\Jlno' => __DIR__ . '/../..' . '/app/Models/Jlno.php',
+        'App\\Models\\Khajna' => __DIR__ . '/../..' . '/app/Models/Khajna.php',
+        'App\\Models\\LandDetail' => __DIR__ . '/../..' . '/app/Models/LandDetail.php',
         'App\\Models\\Mouja' => __DIR__ . '/../..' . '/app/Models/Mouja.php',
+        'App\\Models\\OwnerDetail' => __DIR__ . '/../..' . '/app/Models/OwnerDetail.php',
         'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
         'App\\Models\\PermissionGroup' => __DIR__ . '/../..' . '/app/Models/PermissionGroup.php',
         'App\\Models\\PlotType' => __DIR__ . '/../..' . '/app/Models/PlotType.php',
@@ -642,6 +647,7 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         'App\\Service\\DistrictService' => __DIR__ . '/../..' . '/app/Service/DistrictService.php',
         'App\\Service\\DivisionService' => __DIR__ . '/../..' . '/app/Service/DivisionService.php',
         'App\\Service\\JlnoService' => __DIR__ . '/../..' . '/app/Service/JlnoService.php',
+        'App\\Service\\KhajnaService' => __DIR__ . '/../..' . '/app/Service/KhajnaService.php',
         'App\\Service\\MoujaService' => __DIR__ . '/../..' . '/app/Service/MoujaService.php',
         'App\\Service\\PlotTypeService' => __DIR__ . '/../..' . '/app/Service/PlotTypeService.php',
         'App\\Service\\RoleService' => __DIR__ . '/../..' . '/app/Service/RoleService.php',
@@ -5694,6 +5700,7 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddContext' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddContext.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddDumps' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddDumps.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddEnvironmentInformation' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddEnvironmentInformation.php',
+        'Spatie\\LaravelIgnition\\FlareMiddleware\\AddExceptionHandledStatus' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddExceptionHandledStatus.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddExceptionInformation' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddExceptionInformation.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddJobs' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddJobs.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddLogs' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddLogs.php',
@@ -6701,7 +6708,9 @@ class ComposerStaticInit1b9453c8ecbf88445bf2615e9c51b628
         'Symfony\\Contracts\\Service\\Attribute\\Required' => __DIR__ . '/..' . '/symfony/service-contracts/Attribute/Required.php',
         'Symfony\\Contracts\\Service\\Attribute\\SubscribedService' => __DIR__ . '/..' . '/symfony/service-contracts/Attribute/SubscribedService.php',
         'Symfony\\Contracts\\Service\\ResetInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ResetInterface.php',
+        'Symfony\\Contracts\\Service\\ServiceCollectionInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceCollectionInterface.php',
         'Symfony\\Contracts\\Service\\ServiceLocatorTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceLocatorTrait.php',
+        'Symfony\\Contracts\\Service\\ServiceMethodsSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceMethodsSubscriberTrait.php',
         'Symfony\\Contracts\\Service\\ServiceProviderInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceProviderInterface.php',
         'Symfony\\Contracts\\Service\\ServiceSubscriberInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberInterface.php',
         'Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberTrait.php',

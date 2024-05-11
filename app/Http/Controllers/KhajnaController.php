@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Khajna;
 use App\Models\Upazila;
 use App\Service\KhajnaService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KhajnaController extends Controller
@@ -66,11 +67,27 @@ class KhajnaController extends Controller
     public function view($id)
     {
         $khajna = Khajna::findOrFail($id);
-        return view('pages.khajna.view', compact('khajna'));
+        $khajnaCreatedAt = $khajna->created_at;
+        $carbonDate = Carbon::parse($khajnaCreatedAt);
+
+        $banglaDay = convertToBangla($carbonDate->format('d'));
+        $banglaMonth = $this->convertMonthToBangla($carbonDate->format('F'));
+        $banglaYear = convertToBangla($carbonDate->format('Y'));
+
+        $banglaDate = "$banglaDay $banglaMonth $banglaYear";
+
+        return view('pages.khajna.view', compact('khajna','banglaDate','banglaYear'));
     }
     function delete($id)
     {
         Khajna::findOrFail($id)->delete();
         return redirect()->route('khajna.index')->with('success', 'খাজনা সফল ভাবে মুছে ফেলা হয়েছে');
+    }
+
+    private function convertMonthToBangla($englishMonth)
+    {
+        $englishMonths = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+        $banglaMonths = array('জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর');
+        return str_replace($englishMonths, $banglaMonths, $englishMonth);
     }
 }

@@ -159,7 +159,7 @@
               <tbody>
                 @foreach ($firstArray as $key=>$owner)
                 <tr>
-                  <td>{{ ++$key }}</td>
+                  <td>{{ convertToBangla(++$key) }}</td>
                   <td>{{ $owner->name }}</td>
                   <td>{{ $owner->land_part }}</td>
                 </tr>
@@ -219,13 +219,13 @@
               <tbody>
                 @foreach ($firstArray as $keys=>$land)
                 <tr>
-                  <td>{{ ++$keys }}</td>
+                  <td>{{ convertToBangla(++$keys) }}</td>
                   <td>{{ $land->dag_no }}</td>
                   <td>{{ $land->land_type }}</td>
                   <td>{{ $land->land_qty }}</td>
                 </tr>
                 @php
-                    $total_land += $land->land_qty;
+                    $total_land += (int)banglaToEnglishNumber($land->land_qty);
                 @endphp
                 @endforeach
               </tbody>
@@ -263,7 +263,7 @@
             <thead>
               <tr>
                 <th style="width: 50%;text-align:right">সবমোট জমি (শতক)</th>
-                <th style="text-align: left">{{ $total_land }}</th>
+                <th style="text-align: left">{{ convertToBangla($total_land) }}</th>
               </tr>
             </thead>
           </table>
@@ -283,25 +283,25 @@
                 <td>মন্তব্য</td>
               </tr>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ convertToBangla($khajna->beforethreeYearDue) }}</td>
+                <td>{{ convertToBangla($khajna->threeYearDue) }}</td>
+                <td>{{ convertToBangla($khajna->due_interest) }}</td>
+                <td>{{ convertToBangla($khajna->haldabi) }}</td>
+                <td>{{ convertToBangla($khajna->totaldabi) }}</td>
+                <td>{{ convertToBangla($khajna->totalcollect) }}</td>
+                <td>{{ convertToBangla($khajna->totaldue) }}</td>
+                <td>{{ $khajna->comment }}</td>
               </tr>
             </tbody>
           </table>
-          <p style="margin-bottom: 0px">সবমোট (কথায়)</p>
+          <p style="margin-bottom: 0px">সবমোট (কথায়) {{ convertintoBangla(123) }}</p>
           <hr>
           <table>
             <thead>
               <tr class="header_details">
-                <td style="text-align: left">নোটঃ সবশেষ কর পরিশোধের সালঃ<br>
+                <td style="text-align: left">নোটঃ সবশেষ কর পরিশোধের সালঃ {{ $banglaYear }}<br>
                   চালান নংঃ<br>
-                  তারিখঃ
+                  তারিখঃ {{ $banglaDate }}
                 </td>
                 <td></td>
                 <td style="text-align: center">এই দাখিল ইলেক্ট্রনিকভাবে তৈরি করা হয়েছে,<br>

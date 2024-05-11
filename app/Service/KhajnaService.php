@@ -33,12 +33,21 @@ class KhajnaService
   {
     DB::beginTransaction();
     try {
+      $khajna_data['created_at'] = $data['date'];
       $khajna_data['office_name'] = $data['office_name'];
       $khajna_data['khotian_no'] = $data['khotian_no'];
       $khajna_data['mouja_no'] = $data['mouja_no'];
       $khajna_data['holding_no'] = $data['holding_no'];
       $khajna_data['district_id'] = $data['district'];
       $khajna_data['upazila_id'] = $data['upazila'];
+      $khajna_data['beforethreeYearDue'] = $data['beforethreeYearDue'];
+      $khajna_data['threeYearDue'] = $data['threeYearDue'];
+      $khajna_data['due_interest'] = $data['due_interest'];
+      $khajna_data['haldabi'] = $data['haldabi'];
+      $khajna_data['totaldabi'] = $data['totaldabi'];
+      $khajna_data['totalcollect'] = $data['totalcollect'];
+      $khajna_data['totaldue'] = $data['totaldue'];
+      $khajna_data['comment'] = $data['comment'];
       $khajna = $this->model::create($khajna_data);
 
       $owners = $data['name'];
@@ -70,12 +79,21 @@ class KhajnaService
     DB::beginTransaction();
     try {
       $khajna = $this->model::findOrFail($id);
+      $khajna_data['created_at'] = $data['date'];
       $khajna_data['office_name'] = $data['office_name'];
       $khajna_data['khotian_no'] = $data['khotian_no'];
       $khajna_data['mouja_no'] = $data['mouja_no'];
       $khajna_data['holding_no'] = $data['holding_no'];
       $khajna_data['district_id'] = $data['district'];
       $khajna_data['upazila_id'] = $data['upazila'];
+      $khajna_data['beforethreeYearDue'] = $data['beforethreeYearDue'];
+      $khajna_data['threeYearDue'] = $data['threeYearDue'];
+      $khajna_data['due_interest'] = $data['due_interest'];
+      $khajna_data['haldabi'] = $data['haldabi'];
+      $khajna_data['totaldabi'] = $data['totaldabi'];
+      $khajna_data['totalcollect'] = $data['totalcollect'];
+      $khajna_data['totaldue'] = $data['totaldue'];
+      $khajna_data['comment'] = $data['comment'];
       $khajna->update($khajna_data);
 
       $khajna->owners()->delete();
