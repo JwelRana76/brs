@@ -1,5 +1,5 @@
-<x-admin title="নতুন খাজনা">
-    <x-page-header head="নতুন খাজনা" />
+<x-admin title="খাজনা সংস্করণ">
+    <x-page-header head="খাজনা সংস্করণ" />
     <x-form method="post" action="{{ route('khajna.update',$khajna->id) }}">
       <div class="row">
         <div class="col-md-12">

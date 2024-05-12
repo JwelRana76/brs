@@ -83,7 +83,7 @@
               <button type="button" class="btn brs-added-button mr-2" id="sa_added_button_part3_plus"><i class="fa fa-plus"></i></button>
             </div>
             <div class="col-md-3">
-              <x-input id="beforethreeYearDue" value="0" min="0" label="৩ বছরের ঊধ্বের বকেয়া" required />
+              <x-input id="beforethreeYearDue" value="0" min="0" label="৩ বছরের ঊর্ধ্বের বকেয়া" required />
             </div>
             <div class="col-md-3">
               <x-input id="threeYearDue" value="0" min="0" label="গত ৩ বছরের বকেয়া" required />
