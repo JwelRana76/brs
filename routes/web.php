@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrsController;
 use App\Http\Controllers\CsController;
+use App\Http\Controllers\DagController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\FrontendController;
@@ -132,6 +133,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update/{id}', [KhajnaController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [KhajnaController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [KhajnaController::class, 'view'])->name('view');
+    });
+    Route::group(['prefix' => 'dag', 'as' => 'dag.'], function () {
+        Route::get('/', [DagController::class, 'index'])->name('index');
+        Route::get('/create', [DagController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [DagController::class, 'edit'])->name('edit');
+        Route::post('/store', [DagController::class, 'store'])->name('store');
+        Route::post('/update/{id}', [DagController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [DagController::class, 'delete'])->name('delete');
+        Route::get('/view/{id}', [DagController::class, 'view'])->name('view');
     });
     Route::group(['prefix' => 'front', 'as' => 'front.'], function () {
         Route::get('/', [FrontendController::class, 'index'])->name('index');

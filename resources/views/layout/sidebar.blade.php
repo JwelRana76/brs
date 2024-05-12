@@ -97,15 +97,15 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dag"
+        <a class="nav-link {{ Request::is('dag*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#dag"
             aria-expanded="true" aria-controls="dag">
             <i class="fas fa-fw fa-users"></i>
             <span>দাগ নং</span>
         </a>
-        <div id="dag" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="dag" class="collapse {{ Request::is('dag*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন দাগ নং</a>
-                <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-arrow-right mr-2"></i> দাগ নং তালিকা</a>
+                <a class="collapse-item {{ Request::is('dag/create') ? 'active' : '' }}" href="{{ route('dag.create') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> নতুন দাগ নং</a>
+                <a class="collapse-item {{ Request::is('dag') ? 'active' : '' }}" href="{{ route('dag.index') }}"><i class="fas fa-fw fa-arrow-right mr-2"></i> দাগ নং তালিকা</a>
             </div>
         </div>
     </li>
