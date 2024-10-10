@@ -70,4 +70,12 @@ class DagController extends Controller
         Dag::findOrFail($id)->delete();
         return redirect()->route('dag.index')->with('success', 'দাগ সফল ভাবে মুছে ফেলা হয়েছে');
     }
+    function Import(Request $request)
+    {
+        $request->validate([
+            'dag_file' => 'required|file|mimes:csv,txt',
+        ]);
+        $message = $this->baseService->Import($request->all());
+        return redirect()->route('dag.index')->with($message);
+    }
 }

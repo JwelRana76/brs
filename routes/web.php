@@ -142,6 +142,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update/{id}', [DagController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [DagController::class, 'delete'])->name('delete');
         Route::get('/view/{id}', [DagController::class, 'view'])->name('view');
+        Route::post('/import', [DagController::class, 'import'])->name('import');
     });
     Route::group(['prefix' => 'front', 'as' => 'front.'], function () {
         Route::get('/', [FrontendController::class, 'index'])->name('index');

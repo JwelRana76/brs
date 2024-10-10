@@ -14,6 +14,8 @@ class PageHeader extends Component
     public function __construct(
         public $head = '',
         public $second = '',
+        public $button = '',
+        public $link = '',
     ) {
         //
     }

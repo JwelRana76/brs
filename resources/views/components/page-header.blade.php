@@ -1,6 +1,10 @@
 <div class="row page-header">
     <div class="col-md-6">
-        <h3>{{ $head }}</h3>
+        <h3>{{ $head }} 
+        @if ($button != '')
+            <a href="{{ $link }}" class="btn btn-primary ml-5">{{ $button }}</a>
+        @endif
+        </h3>
     </div>
     <div class="col-md-6">
         <div class="float-right right-content">
