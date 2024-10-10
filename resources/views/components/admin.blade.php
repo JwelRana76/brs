@@ -20,13 +20,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this page -->
-    <link href="/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="{{asset('css/jquery.dataTables.css')}}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> --}}
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SutonnyMJ&display=swap">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SutonnyMJ&display=swap">-->
 
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -105,21 +106,21 @@
 
 
     <!-- Page level custom scripts -->
-    <script src="/js/jquery.dataTables.js"></script>
+    <script src="{{asset('js/jquery.dataTables.js')}}"></script>
     {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> --}}
-    <script src="/js/yajradatatable.js"></script>
+    <script src="{{asset('js/yajradatatable.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     
+    <script src="{{asset('js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('js/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('js/vfs_fonts.js')}}"></script>
+    <script src="{{asset('js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('js/jszip.min.js')}}"></script>
     
-    <script src="/js/dataTables.buttons.min.js"></script>
-    <script src="/js/buttons.colVis.min.js"></script>
-    <script src="/js/vfs_fonts.js"></script>
-    <script src="/js/jszip.min.js"></script>
-    <script src="/js/buttons.html5.min.js"></script>
-    <script src="/js/dataTables.select.min.js"></script>
-    <script src="/js/buttons.print.min.js"></script>
+    <script src="{{asset('js/dataTables.select.min.js')}}"></script>
+    <script src="{{asset('js/buttons.print.min.js')}}"></script>
     <!-- Include Toastr CSS and JS via CDN -->
-    <script src="/js/bootstrap-select.min.js"></script>
+    <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
 
 
     

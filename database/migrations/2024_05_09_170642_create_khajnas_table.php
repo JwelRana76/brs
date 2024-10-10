@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('khajnas', function (Blueprint $table) {
             $table->id();
+            $table->string('sl_no');
             $table->string('office_name');
             $table->string('mouja_no');
             $table->string('holding_no');

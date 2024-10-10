@@ -26,7 +26,7 @@ class KhajnaService
       ->addColumn('date', function ($item) {
         return $item->created_at->format('d-M-Y');
       })
-      ->addColumn('action', fn ($item) => view('pages.khajna.action', compact('item'))->render())
+      ->addColumn('action', fn($item) => view('pages.khajna.action', compact('item'))->render())
       ->make(true);
   }
   public function create($data)
@@ -48,6 +48,9 @@ class KhajnaService
       $khajna_data['totalcollect'] = $data['totalcollect'];
       $khajna_data['totaldue'] = $data['totaldue'];
       $khajna_data['comment'] = $data['comment'];
+      $khajna_data['fiscal_year'] = $data['fiscal_year'];
+      $khajna_data['sl_no'] = $data['sl_no'];
+
       $khajna = $this->model::create($khajna_data);
 
       $owners = $data['name'];
@@ -94,6 +97,8 @@ class KhajnaService
       $khajna_data['totalcollect'] = $data['totalcollect'];
       $khajna_data['totaldue'] = $data['totaldue'];
       $khajna_data['comment'] = $data['comment'];
+      $khajna_data['fiscal_year'] = $data['fiscal_year'];
+      $khajna_data['sl_no'] = $data['sl_no'];
       $khajna->update($khajna_data);
 
       $khajna->owners()->delete();

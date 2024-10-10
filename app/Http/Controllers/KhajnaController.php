@@ -9,6 +9,10 @@ use App\Models\Upazila;
 use App\Service\KhajnaService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use EasyBanglaDate\Types\BnDateTime;
+use EasyBanglaDate\Types\DateTime as EnDateTime;
+use App\Service\BanglaNumberToWord;;
 
 class KhajnaController extends Controller
 {
@@ -66,7 +70,51 @@ class KhajnaController extends Controller
 
     public function view($id)
     {
+        // $id = Crypt::decryptString($id);
+        $id = base64url_decode($id);
+
         $khajna = Khajna::findOrFail($id);
+
+        // https://github.com/ronisaha/easy-bangla-date
+        // it is not bangladeshi gregorian calendar
+        // $bongabda = new BnDateTime($khajna->created_at, new \DateTimeZone('Asia/Dhaka'));
+        // // $bangla_date = $bongabda->format('l jS F Y b h:i:s');
+        // $bangla_date = $bongabda->format('jS F Y');
+
+        // https://bangla.plus/bangla-date-converter/
+        // লক্ষণীয়
+        // বাংলা ডেট কনভার্টার (Bangla Date Converter) বাংলাদেশের বাংলা একাডেমি কর্তৃক প্রবর্তিত বাংলা বর্ষপঞ্জী পদ্ধতির অনুসরণ করে তৈরি করা হয়েছে, যা বাংলা ক্যালেন্ডার হিসেবে বাংলাদেশে সরকারীভাবে প্রচলিত। এটি পূর্বের প্রচলিত বাংলা ক্যালেন্ডারেরই এক পরিবর্তিত রূপ, যা ড. মুহম্মদ শহীদুল্লাহ'র নেতৃত্বে গঠিত কমিটির প্রস্তাবনা অনুযায়ী গৃহীত হয়।
+
+        $date_day = date('j', strtotime($khajna->created_at));
+        $date_month = date('m', strtotime($khajna->created_at));
+        $date_year = date('Y', strtotime($khajna->created_at));
+        $endpoint = 'https://bangla.plus/api/converttobangladate/json/';
+        $params = [
+            'day' => $date_day,
+            'month' => $date_month,
+            'year' => $date_year,
+            'language' => 'Bangla',
+        ];
+        $url = $endpoint . '?' . http_build_query($params);
+
+        // Initialize a CURL session.
+        $ch = curl_init();
+
+        // Return Page contents.
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        //grab URL and pass it to the variable.
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        $result = curl_exec($ch);
+        $result = json_decode($result, true);
+
+        if (! isset($result['FullDate'])) {
+            dd('Bangla date error!');
+        }
+
+        $bangla_date = $result['FullDate'];
+
         $khajnaCreatedAt = $khajna->created_at;
         $carbonDate = Carbon::parse($khajnaCreatedAt);
 
@@ -76,7 +124,9 @@ class KhajnaController extends Controller
 
         $banglaDate = "$banglaDay $banglaMonth $banglaYear";
 
-        return view('pages.khajna.view', compact('khajna','banglaDate','banglaYear'));
+        $banglas_number_to_word = new BanglaNumberToWord();
+
+        return view('pages.khajna.view', compact('khajna', 'banglaDate', 'bangla_date', 'banglaYear', 'banglas_number_to_word'));
     }
     function delete($id)
     {

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Division;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,5 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SiteSettingSeeder::class);
         $this->call(GenderSeeder::class);
         $this->call(BloodGroupSeeder::class);
+        $this->call(DivisionSeeder::class);
+        $this->call(DistrictSeeder::class);
+        $this->call(UpazilaSeeder::class);
     }
 }

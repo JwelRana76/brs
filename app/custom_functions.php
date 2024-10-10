@@ -32,19 +32,20 @@ function hasNotPermission()
 {
   return view('not_permitted');
 }
-function convertToBangla($total_land) {
+function convertToBangla($total_land)
+{
   // Define the Bengali numbers
   $banglaNumbers = array(
-      '0' => '০',
-      '1' => '১',
-      '2' => '২',
-      '3' => '৩',
-      '4' => '৪',
-      '5' => '৫',
-      '6' => '৬',
-      '7' => '৭',
-      '8' => '৮',
-      '9' => '৯'
+    '0' => '০',
+    '1' => '১',
+    '2' => '২',
+    '3' => '৩',
+    '4' => '৪',
+    '5' => '৫',
+    '6' => '৬',
+    '7' => '৭',
+    '8' => '৮',
+    '9' => '৯'
   );
 
   // Check if the input already contains Bangla digits
@@ -52,20 +53,20 @@ function convertToBangla($total_land) {
 
   // If not, convert it to string
   if (!$containsBanglaDigits) {
-      $total_land = strval($total_land);
+    $total_land = strval($total_land);
   }
 
   // Convert each digit of the number to Bengali
   $bangla_land = '';
   $length = strlen($total_land);
   for ($i = 0; $i < $length; $i++) {
-      $digit = $total_land[$i];
-      // If the input already contains Bangla digits, no need to convert
-      if ($containsBanglaDigits) {
-          $bangla_land .= $digit;
-      } else {
-          $bangla_land .= isset($banglaNumbers[$digit]) ? $banglaNumbers[$digit] : $digit;
-      }
+    $digit = $total_land[$i];
+    // If the input already contains Bangla digits, no need to convert
+    if ($containsBanglaDigits) {
+      $bangla_land .= $digit;
+    } else {
+      $bangla_land .= isset($banglaNumbers[$digit]) ? $banglaNumbers[$digit] : $digit;
+    }
   }
 
   return $bangla_land;
@@ -73,14 +74,23 @@ function convertToBangla($total_land) {
 function banglaToEnglishNumber($banglaNumber)
 {
   $banglaDigits = array(
-    '০' => '0', '১' => '1', '২' => '2', '৩' => '3', '৪' => '4',
-    '৫' => '5', '৬' => '6', '৭' => '7', '৮' => '8', '৯' => '9'
+    '০' => '0',
+    '১' => '1',
+    '২' => '2',
+    '৩' => '3',
+    '৪' => '4',
+    '৫' => '5',
+    '৬' => '6',
+    '৭' => '7',
+    '৮' => '8',
+    '৯' => '9'
   );
 
   return strtr($banglaNumber, $banglaDigits);
 }
 
-function convertintoBangla($number) {
+function convertintoBangla($number)
+{
   $banglaNumbers = array(
     '0' => 'শুন্য',
     '1' => 'এক',
@@ -129,35 +139,45 @@ function convertintoBangla($number) {
     '800' => 'আটশ',
     '900' => 'নয়শ',
     '1000' => 'হাজার'
-);
+  );
 
-// If the number is in the predefined array, return its Bengali equivalent
-if (isset($banglaNumbers[$number])) {
+  // If the number is in the predefined array, return its Bengali equivalent
+  if (isset($banglaNumbers[$number])) {
     return $banglaNumbers[$number];
-}
+  }
 
-// If the number is greater than 1000, return 'অধিক'
-if ($number > 1000) {
+  // If the number is greater than 1000, return 'অধিক'
+  if ($number > 1000) {
     return 'অধিক';
-}
+  }
 
-// Convert each digit of the number to Bengali
-$banglaText = '';
-$numberString = strval($number);
-$length = strlen($numberString);
-for ($i = 0; $i < $length; $i++) {
+  // Convert each digit of the number to Bengali
+  $banglaText = '';
+  $numberString = strval($number);
+  $length = strlen($numberString);
+  for ($i = 0; $i < $length; $i++) {
     $digit = $numberString[$i];
     if ($digit !== '0') {
-        if ($length - $i == 2 && $digit == '1') { // For tens place with '1'
-            $nextDigit = $numberString[$i + 1];
-            $banglaText .= $banglaNumbers[$digit.$nextDigit];
-            break; // Break the loop since we handled two digits together
-        } else {
-            $placeValue = pow(10, $length - $i - 1);
-            $banglaText .= $banglaNumbers[$digit * $placeValue] . ' ';
-        }
+      if ($length - $i == 2 && $digit == '1') { // For tens place with '1'
+        $nextDigit = $numberString[$i + 1];
+        $banglaText .= $banglaNumbers[$digit . $nextDigit];
+        break; // Break the loop since we handled two digits together
+      } else {
+        $placeValue = pow(10, $length - $i - 1);
+        $banglaText .= $banglaNumbers[$digit * $placeValue] . ' ';
+      }
     }
+  }
+
+  return $banglaText;
 }
 
-return $banglaText;
+function base64url_encode($plainText)
+{
+  return strtr(base64_encode($plainText), '+/=', '-_');
+}
+
+function base64url_decode($b64Text)
+{
+  return base64_decode(strtr($b64Text, '-_', '+/='));
 }
